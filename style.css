@@ -1,0 +1,119 @@
+/* ========================
+   FONTS & RESET
+======================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: #0F0E0C;
+  color: #F5F3EE;
+  min-height: 100vh;
+}
+
+/* ========================
+   HEADER
+======================== */
+.header {
+  background: #1A1815;
+  border-bottom: 1px solid #333230;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  background: #C9A84C;
+  color: #0F0E0C;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.logo-text h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+
+.logo-text h1 span {
+  color: #C9A84C;
+}
+
+.logo-text p {
+  font-size: 11px;
+  color: #8A8880;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.badge {
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: #C9A84C;
+  font-size: 11px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ========================
+   MAIN LAYOUT
+======================== */
+.main {
+  display: flex;
+  height: calc(100vh - 73px);
+}
+
+/* ========================
+   LEFT PANEL
+======================== */
+.panel {
+  width: 320px;
+  min-width: 320px;
+  background: #1A1815;
+  border-right: 1px solid #333230;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ========================
+   RIGHT CANVAS
+======================== */
+.canvas {
+  flex: 1;
+  background: #0F0E0C;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* ========================
+   PLACEHOLDER TEXT
+======================== */
+.coming-soon {
+  color: #8A8880;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 40px;
+}
