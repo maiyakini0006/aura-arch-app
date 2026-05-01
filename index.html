@@ -25,12 +25,261 @@
 
     <!-- LEFT PANEL: INPUT FORM -->
     <aside class="panel">
-      <p class="coming-soon">Input form coming in Step 2...</p>
+
+      <!-- SECTION: PLOT SIZE -->
+      <div class="section">
+        <div class="section-title">Plot Configuration</div>
+        <div class="row">
+          <div class="field">
+            <label>Plot Width</label>
+            <div class="input-unit">
+              <input type="number" id="plotW" value="50" min="10" />
+              <span class="unit">ft</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Plot Length</label>
+            <div class="input-unit">
+              <input type="number" id="plotL" value="100" min="10" />
+              <span class="unit">ft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: BUILDING TYPE -->
+      <div class="section">
+        <div class="section-title">Building Type</div>
+        <div class="toggle-group" id="buildingType">
+          <button class="toggle active" data-val="Bungalow">Bungalow</button>
+          <button class="toggle" data-val="Duplex">Duplex</button>
+          <button class="toggle" data-val="Terrace">Terrace</button>
+        </div>
+      </div>
+
+      <!-- SECTION: STYLE -->
+      <div class="section">
+        <div class="section-title">Architectural Style</div>
+        <div class="toggle-group" id="archStyle">
+          <button class="toggle active" data-val="Modern Nigerian">Modern Nigerian</button>
+          <button class="toggle" data-val="Contemporary">Contemporary</button>
+          <button class="toggle" data-val="Colonial">Colonial</button>
+          <button class="toggle" data-val="Minimalist">Minimalist</button>
+        </div>
+      </div>
+
+      <!-- SECTION: ROOF -->
+      <div class="section">
+        <div class="section-title">Roof Style</div>
+        <div class="toggle-group" id="roofStyle">
+          <button class="toggle active" data-val="Hip Roof">Hip Roof</button>
+          <button class="toggle" data-val="Flat Roof">Flat Roof</button>
+          <button class="toggle" data-val="Gable Roof">Gable Roof</button>
+          <button class="toggle" data-val="Mansard">Mansard</button>
+        </div>
+      </div>
+
+      <!-- SECTION: ROOMS -->
+      <div class="section">
+        <div class="section-title">Rooms & Layout</div>
+        <div class="row">
+          <div class="field">
+            <label>Bedrooms</label>
+            <select id="bedrooms">
+              <option value="2">2 Bedrooms</option>
+              <option value="3" selected>3 Bedrooms</option>
+              <option value="4">4 Bedrooms</option>
+              <option value="5">5 Bedrooms</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Bathrooms</label>
+            <select id="bathrooms">
+              <option value="1">1 Bathroom</option>
+              <option value="2" selected>2 Bathrooms</option>
+              <option value="3">3 Bathrooms</option>
+            </select>
+          </div>
+        </div>
+        <div class="toggle-group multi" id="extras">
+          <button class="toggle active" data-val="Living Room">Living Room</button>
+          <button class="toggle active" data-val="Dining">Dining</button>
+          <button class="toggle active" data-val="Kitchen">Kitchen</button>
+          <button class="toggle" data-val="Store">Store</button>
+          <button class="toggle" data-val="Study">Study</button>
+          <button class="toggle" data-val="Garage">Garage</button>
+        </div>
+      </div>
+
+      <!-- SECTION: SITE CONDITIONS -->
+      <div class="section">
+        <div class="section-title">Site Conditions</div>
+        <div class="field" style="margin-bottom: 12px;">
+          <label>Soil Type</label>
+          <select id="soil">
+            <option value="Firm Clay">Firm Clay</option>
+            <option value="Sandy Loam" selected>Sandy Loam</option>
+            <option value="Rocky">Rocky</option>
+            <option value="Swampy">Swampy</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Zoning / Setback</label>
+          <select id="zoning">
+            <option value="3m setback">3m setback (standard)</option>
+            <option value="5m setback">5m setback (commercial zone)</option>
+            <option value="No restriction">No restriction</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SECTION: SEED -->
+      <div class="section">
+        <div class="section-title">Consistency Seed</div>
+        <div class="field">
+          <label>Generation Seed</label>
+          <div class="seed-row">
+            <input type="number" id="seed" value="12345" />
+            <button class="btn-random" id="randomBtn">Randomize</button>
+          </div>
+        </div>
+        <div class="seed-info">
+          🔒 Fixed seed keeps all 4 outputs showing the same building
+        </div>
+      </div>
+
+      <!-- SECTION: REQUIREMENTS -->
+      <div class="section">
+        <div class="section-title">Specific Requirements</div>
+        <textarea
+          id="requirements"
+          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior with brown roof tiles..."
+        ></textarea>
+      </div>
+
+      <!-- GENERATE BUTTON -->
+      <button class="btn-generate" id="generateBtn">
+        Generate Blueprints
+      </button>
+
     </aside>
 
     <!-- RIGHT CANVAS: OUTPUT AREA -->
     <main class="canvas">
-      <p class="coming-soon">Output area coming in Step 3...</p>
+
+      <!-- CANVAS HEADER -->
+      <div class="canvas-header">
+        <h2 class="canvas-title">Design Output</h2>
+        <div class="status-row">
+          <div class="status-dot" id="statusDot"></div>
+          <span class="status-text" id="statusText">Ready to generate</span>
+        </div>
+      </div>
+
+      <!-- ERROR BOX -->
+      <div class="error-box" id="errorBox"></div>
+
+      <!-- DESIGN SUMMARY CARD -->
+      <div class="summary-card" id="summaryCard">
+        <div class="summary-title" id="summaryTitle">Design Summary</div>
+        <div class="summary-grid" id="summaryGrid"></div>
+      </div>
+
+      <!-- OUTPUT GRID: 4 CARDS -->
+      <div class="output-grid">
+
+        <!-- CARD 1: 3D VIEW -->
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">3D Isometric View</span>
+          </div>
+          <div class="card-body" id="card0">
+            <div class="loading" id="load0">
+              <div class="spinner"></div>
+              <span>Generating exterior...</span>
+            </div>
+            <div class="placeholder" id="ph0">
+              <div class="ph-icon">🏗️</div>
+              <div class="ph-text">3D view will appear here</div>
+            </div>
+            <div class="result-text" id="res0"></div>
+          </div>
+        </div>
+
+        <!-- CARD 2: FRONT FACADE -->
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">Front Facade</span>
+          </div>
+          <div class="card-body" id="card1">
+            <div class="loading" id="load1">
+              <div class="spinner"></div>
+              <span>Rendering facade...</span>
+            </div>
+            <div class="placeholder" id="ph1">
+              <div class="ph-icon">🏠</div>
+              <div class="ph-text">Front elevation will appear here</div>
+            </div>
+            <div class="result-text" id="res1"></div>
+          </div>
+        </div>
+
+        <!-- CARD 3: FLOOR PLAN -->
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">Floor Plan Layout</span>
+          </div>
+          <div class="card-body" id="card2">
+            <div class="loading" id="load2">
+              <div class="spinner"></div>
+              <span>Drawing floor plan...</span>
+            </div>
+            <div class="placeholder" id="ph2">
+              <div class="ph-icon">📐</div>
+              <div class="ph-text">Floor plan will appear here</div>
+            </div>
+            <div class="result-text" id="res2"></div>
+          </div>
+        </div>
+
+        <!-- CARD 4: INTERIOR -->
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">Interior Cutaway View</span>
+          </div>
+          <div class="card-body" id="card3">
+            <div class="loading" id="load3">
+              <div class="spinner"></div>
+              <span>Visualizing interior...</span>
+            </div>
+            <div class="placeholder" id="ph3">
+              <div class="ph-icon">🛋️</div>
+              <div class="ph-text">Dollhouse interior will appear here</div>
+            </div>
+            <div class="result-text" id="res3"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FULL WIDTH: TECHNICAL SPECS CARD -->
+      <div class="output-card specs-card" id="specsCard">
+        <div class="card-header">
+          <span class="card-type">Technical Specifications & Materials</span>
+        </div>
+        <div class="card-body" id="card4">
+          <div class="loading" id="load4">
+            <div class="spinner"></div>
+            <span>Compiling specifications...</span>
+          </div>
+          <div class="placeholder" id="ph4">
+            <div class="ph-icon">📋</div>
+            <div class="ph-text">Technical specs will appear here</div>
+          </div>
+          <div class="result-text" id="res4"></div>
+        </div>
+      </div>
+
     </main>
 
   </div>
