@@ -162,7 +162,7 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 
 async function callClaude(prompt) {
 
-  const GEMINI_KEY = 'AIzaSyAAVgLaU6EKQUqSvHDifYqD53669_8vKjM';
+  const GEMINI_KEY = 'AIzaSyAPbsyzEC8D8DxmwymJhz6PRS3wZ99C4Wo';
 
   const systemPrompt = 'You are MY ArchGen, a professional architectural design AI specializing in Nigerian and African residential buildings. Always describe the EXACT same building across all outputs. Same materials, colors, roof, windows, doors. Write in clear flowing prose. No bullet points. No markdown headers. No asterisks. Be specific, technical and vivid. Around 180 words per output.';
 
