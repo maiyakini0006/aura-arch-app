@@ -57,9 +57,13 @@ function setStatus(text, active = false) {
 // ========================
 
 function showLoading(index) {
-  document.getElementById('load' + index).classList.add('show');
-  document.getElementById('ph' + index).style.display = 'none';
-  document.getElementById('res' + index).style.display = 'none';
+  const loader  = document.getElementById('load' + index);
+  const ph      = document.getElementById('ph' + index);
+  const result  = document.getElementById('res' + index);
+
+  if (loader) loader.classList.add('show');
+  if (ph)     ph.style.display  = 'none';
+  if (result) result.style.display = 'none';
 }
 
 // ========================
@@ -67,10 +71,25 @@ function showLoading(index) {
 // ========================
 
 function showResult(index, text) {
-  document.getElementById('load' + index).classList.remove('show');
-  const resultEl = document.getElementById('res' + index);
-  resultEl.textContent = text;
-  resultEl.style.display = 'block';
+  const loader = document.getElementById('load' + index);
+  const ph     = document.getElementById('ph' + index);
+  const result = document.getElementById('res' + index);
+
+  if (loader) loader.classList.remove('show');
+  if (ph)     ph.style.display = 'none';
+
+  if (result) {
+    result.textContent = text;
+    result.style.display       = 'block';
+    result.style.width         = '100%';
+    result.style.textAlign     = 'left';
+    result.style.fontSize      = '12px';
+    result.style.lineHeight    = '1.8';
+    result.style.whiteSpace    = 'pre-wrap';
+    result.style.wordWrap      = 'break-word';
+    result.style.color         = 'var(--text-main)';
+    result.style.padding       = '4px 0';
+  }
 }
 
 // ========================
@@ -79,12 +98,15 @@ function showResult(index, text) {
 
 function showError(message) {
   const box = document.getElementById('errorBox');
-  box.textContent = message;
-  box.classList.add('show');
+  if (box) {
+    box.textContent = message;
+    box.classList.add('show');
+  }
 }
 
 function clearError() {
-  document.getElementById('errorBox').classList.remove('show');
+  const box = document.getElementById('errorBox');
+  if (box) box.classList.remove('show');
 }
 
 // ========================
@@ -92,8 +114,11 @@ function clearError() {
 // ========================
 
 function showPlaceholder(index) {
-  document.getElementById('load' + index).classList.remove('show');
-  document.getElementById('ph' + index).style.display = 'block';
+  const loader = document.getElementById('load' + index);
+  const ph     = document.getElementById('ph' + index);
+
+  if (loader) loader.classList.remove('show');
+  if (ph)     ph.style.display = 'flex';
 }
 
 // ========================
@@ -101,9 +126,11 @@ function showPlaceholder(index) {
 // ========================
 
 function buildSummary(beds, baths, type, plotW, plotL, seed) {
-  const card = document.getElementById('summaryCard');
+  const card  = document.getElementById('summaryCard');
   const title = document.getElementById('summaryTitle');
-  const grid = document.getElementById('summaryGrid');
+  const grid  = document.getElementById('summaryGrid');
+
+  if (!card || !title || !grid) return;
 
   title.textContent = beds + '-Bedroom ' + type + ' Design';
 
@@ -137,6 +164,8 @@ async function callClaude(prompt) {
 
   const GEMINI_KEY = 'AIzaSyAAVgLaU6EKQUqSvHDifYqD53669_8vKjM';
 
+  const systemPrompt = 'You are MY ArchGen, a professional architectural design AI specializing in Nigerian and African residential buildings. Always describe the EXACT same building across all outputs. Same materials, colors, roof, windows, doors. Write in clear flowing prose. No bullet points. No markdown headers. No asterisks. Be specific, technical and vivid. Around 180 words per output.';
+
   const response = await fetch(
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY,
     {
@@ -149,7 +178,7 @@ async function callClaude(prompt) {
           {
             parts: [
               {
-                text: 'You are MY ArchGen, a professional architectural design AI specializing in Nigerian and African residential buildings. Always describe the EXACT same building across all outputs. Same materials, colors, roof, windows, doors. Write in clear flowing prose. No bullet points. No markdown headers. Be specific, technical and vivid. Around 180 words per output.\n\n' + prompt
+                text: systemPrompt + '\n\n' + prompt
               }
             ]
           }
@@ -166,6 +195,16 @@ async function callClaude(prompt) {
 
   if (data.error) {
     throw new Error(data.error.message);
+  }
+
+  if (
+    !data.candidates ||
+    !data.candidates[0] ||
+    !data.candidates[0].content ||
+    !data.candidates[0].content.parts ||
+    !data.candidates[0].content.parts[0]
+  ) {
+    throw new Error('No response from Gemini AI');
   }
 
   return data.candidates[0].content.parts[0].text;
@@ -244,13 +283,18 @@ async function generate() {
 
   ];
 
+  // --- Reset UI ---
   clearError();
   document.getElementById('generateBtn').disabled = true;
-  document.getElementById('specsCard').classList.add('show');
+
+  const specsCard = document.getElementById('specsCard');
+  if (specsCard) specsCard.classList.add('show');
+
   setStatus('Generating your design...', true);
   [0, 1, 2, 3, 4].forEach(i => showLoading(i));
   buildSummary(beds, baths, type, plotW, plotL, seed);
 
+  // --- Call Gemini for all 5 outputs at once ---
   try {
 
     const results = await Promise.allSettled(
@@ -300,12 +344,12 @@ function loadTheme() {
   const saved = localStorage.getItem('archgen-theme');
   if (saved === 'light') {
     document.body.classList.add('light');
-    nightIcon.textContent = '☀️';
-    nightLabel.textContent = 'Day Mode';
+    if (nightIcon)  nightIcon.textContent  = '☀️';
+    if (nightLabel) nightLabel.textContent = 'Day Mode';
   } else {
     document.body.classList.remove('light');
-    nightIcon.textContent = '🌙';
-    nightLabel.textContent = 'Night Mode';
+    if (nightIcon)  nightIcon.textContent  = '🌙';
+    if (nightLabel) nightLabel.textContent = 'Night Mode';
   }
 }
 
@@ -313,18 +357,21 @@ function toggleTheme() {
   const isLight = document.body.classList.contains('light');
   if (isLight) {
     document.body.classList.remove('light');
-    nightIcon.textContent = '🌙';
-    nightLabel.textContent = 'Night Mode';
+    if (nightIcon)  nightIcon.textContent  = '🌙';
+    if (nightLabel) nightLabel.textContent = 'Night Mode';
     localStorage.setItem('archgen-theme', 'dark');
   } else {
     document.body.classList.add('light');
-    nightIcon.textContent = '☀️';
-    nightLabel.textContent = 'Day Mode';
+    if (nightIcon)  nightIcon.textContent  = '☀️';
+    if (nightLabel) nightLabel.textContent = 'Day Mode';
     localStorage.setItem('archgen-theme', 'light');
   }
 }
 
-nightToggle.addEventListener('click', toggleTheme);
+if (nightToggle) {
+  nightToggle.addEventListener('click', toggleTheme);
+}
+
 loadTheme();
 
 // ========================
