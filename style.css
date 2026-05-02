@@ -14,18 +14,54 @@ body {
   background: #0F0E0C;
   color: #F5F3EE;
   min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ========================
+   CSS VARIABLES (DARK MODE)
+======================== */
+:root {
+  --bg-main: #0F0E0C;
+  --bg-surface: #1A1815;
+  --bg-card: #242220;
+  --border: #333230;
+  --text-main: #F5F3EE;
+  --text-muted: #8A8880;
+  --gold: #C9A84C;
+  --gold-dark: #B8860B;
+}
+
+/* ========================
+   LIGHT MODE VARIABLES
+======================== */
+body.light {
+  --bg-main: #F5F3EE;
+  --bg-surface: #FFFFFF;
+  --bg-card: #F0EDE8;
+  --border: #DDD9D3;
+  --text-main: #1A1815;
+  --text-muted: #6B6860;
+  --gold: #B8860B;
+  --gold-dark: #96700A;
 }
 
 /* ========================
    HEADER
 ======================== */
 .header {
-  background: #1A1815;
-  border-bottom: 1px solid #333230;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
   padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
@@ -37,7 +73,7 @@ body {
 .logo-mark {
   width: 40px;
   height: 40px;
-  background: #C9A84C;
+  background: var(--gold);
   color: #0F0E0C;
   font-family: 'Syne', sans-serif;
   font-weight: 800;
@@ -53,15 +89,16 @@ body {
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0.02em;
+  color: var(--text-main);
 }
 
 .logo-text h1 span {
-  color: #C9A84C;
+  color: var(--gold);
 }
 
 .logo-text p {
   font-size: 11px;
-  color: #8A8880;
+  color: var(--text-muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-top: 2px;
@@ -70,12 +107,36 @@ body {
 .badge {
   background: rgba(201, 168, 76, 0.12);
   border: 1px solid rgba(201, 168, 76, 0.3);
-  color: #C9A84C;
+  color: var(--gold);
   font-size: 11px;
   padding: 5px 14px;
   border-radius: 20px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.night-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.night-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.night-icon {
+  font-size: 14px;
 }
 
 /* ========================
@@ -92,10 +153,11 @@ body {
 .panel {
   width: 320px;
   min-width: 320px;
-  background: #1A1815;
-  border-right: 1px solid #333230;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
   padding: 20px;
   overflow-y: auto;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 /* ========================
@@ -103,17 +165,507 @@ body {
 ======================== */
 .canvas {
   flex: 1;
-  background: #0F0E0C;
+  background: var(--bg-main);
   padding: 24px;
   overflow-y: auto;
+  transition: background 0.3s;
 }
 
 /* ========================
-   PLACEHOLDER TEXT
+   SECTIONS
 ======================== */
-.coming-soon {
-  color: #8A8880;
+.section {
+  margin-bottom: 22px;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ========================
+   LABELS
+======================== */
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+/* ========================
+   ROW & FIELD
+======================== */
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.field {
+  flex: 1;
+}
+
+/* ========================
+   INPUTS & SELECTS
+======================== */
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  border-radius: 6px;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 13px;
+  padding: 8px 12px;
+  outline: none;
+  transition: border-color 0.2s, background 0.3s, color 0.3s;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8880' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.6;
+}
+
+/* ========================
+   INPUT WITH UNIT (ft)
+======================== */
+.input-unit {
+  display: flex;
+}
+
+.input-unit input {
+  border-radius: 6px 0 0 6px;
+  border-right: none;
+}
+
+.unit {
+  background: var(--border);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ========================
+   TOGGLE BUTTONS
+======================== */
+.toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.toggle.active {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ========================
+   SEED ROW
+======================== */
+.seed-row {
+  display: flex;
+  gap: 8px;
+}
+
+.seed-row input {
+  flex: 1;
+}
+
+.btn-random {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.btn-random:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.seed-info {
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ========================
+   GENERATE BUTTON
+======================== */
+.btn-generate {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  border: none;
+  color: #0F0E0C;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 8px;
+}
+
+.btn-generate:hover {
+  opacity: 0.88;
+}
+
+.btn-generate:active {
+  transform: scale(0.98);
+}
+
+.btn-generate:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ========================
+   CANVAS HEADER
+======================== */
+.canvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.canvas-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-main);
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s;
+}
+
+.status-dot.active {
+  background: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.status-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ========================
+   ERROR BOX
+======================== */
+.error-box {
+  display: none;
+  background: rgba(226, 75, 74, 0.1);
+  border: 1px solid rgba(226, 75, 74, 0.3);
+  color: #F09595;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.error-box.show {
+  display: block;
+}
+
+/* ========================
+   SUMMARY CARD
+======================== */
+.summary-card {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.summary-card.show {
+  display: block;
+}
+
+.summary-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.summary-item {
   text-align: center;
-  margin-top: 40px;
+}
+
+.summary-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.summary-key {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 3px;
+}
+
+/* ========================
+   OUTPUT GRID
+======================== */
+.output-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* ========================
+   OUTPUT CARDS
+======================== */
+.output-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.3s;
+}
+
+.output-card:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+}
+
+.specs-card {
+  display: none;
+}
+
+.specs-card.show {
+  display: block;
+}
+
+.card-header {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-type {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ========================
+   CARD BODY
+======================== */
+.card-body {
+  padding: 16px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* ========================
+   PLACEHOLDER
+======================== */
+.placeholder {
+  text-align: center;
+  color: var(--text-muted);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.ph-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+  opacity: 0.4;
+}
+
+.ph-text {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* ========================
+   LOADING SPINNER
+======================== */
+.loading {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  width: 100%;
+  min-height: 160px;
+}
+
+.loading.show {
+  display: flex;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================
+   RESULT TEXT
+======================== */
+.result-text {
+  display: none;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  width: 100%;
+  text-align: left;
+  padding: 4px 0;
+  word-wrap: break-word;
+}
+
+/* ========================
+   RESPONSIVE
+======================== */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .panel {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .output-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header {
+    padding: 12px 16px;
+  }
+
+  .canvas {
+    padding: 16px;
+  }
 }
