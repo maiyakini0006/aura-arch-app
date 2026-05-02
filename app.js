@@ -130,31 +130,37 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 }
 
 // ========================
-// GROQ AI API CALL
+// GEMINI AI API CALL
 // ========================
 
 async function callClaude(prompt) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer YOUR_GROQ_KEY_HERE'
-    },
-    body: JSON.stringify({
-      model: 'llama3-70b-8192',
-      max_tokens: 1000,
-      messages: [
-        {
-          role: 'system',
-          content: 'You are MY ArchGen, a professional architectural design AI specializing in Nigerian and African residential buildings. Always describe the EXACT same building across all outputs. Same materials, colors, roof, windows, doors. Write in clear flowing prose. No bullet points. No markdown headers. Be specific, technical and vivid. Around 180 words per output.'
-        },
-        {
-          role: 'user',
-          content: prompt
+
+  const GEMINI_KEY = 'AIzaSyAAVgLaU6EKQUqSvHDifYqD53669_8vKjM';
+
+  const response = await fetch(
+    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: 'You are MY ArchGen, a professional architectural design AI specializing in Nigerian and African residential buildings. Always describe the EXACT same building across all outputs. Same materials, colors, roof, windows, doors. Write in clear flowing prose. No bullet points. No markdown headers. Be specific, technical and vivid. Around 180 words per output.\n\n' + prompt
+              }
+            ]
+          }
+        ],
+        generationConfig: {
+          maxOutputTokens: 1000,
+          temperature: 0.7
         }
-      ]
-    })
-  });
+      })
+    }
+  );
 
   const data = await response.json();
 
@@ -162,7 +168,7 @@ async function callClaude(prompt) {
     throw new Error(data.error.message);
   }
 
-  return data.choices[0].message.content;
+  return data.candidates[0].content.parts[0].text;
 }
 
 // ========================
@@ -197,7 +203,6 @@ async function generate() {
 
   const prompts = [
 
-    // Card 0: 3D Isometric View
     `Describe a detailed 3D isometric exterior view of this building:
     ${baseDesign}
     Show all four sides from a 45-degree elevated angle.
@@ -205,7 +210,6 @@ async function generate() {
     window count and placement, front door style, perimeter fence,
     compound area, landscaping elements and decorative details.`,
 
-    // Card 1: Front Facade
     `Describe the front facade elevation of this building:
     ${baseDesign}
     Describe the exact front face as seen straight-on.
@@ -213,7 +217,6 @@ async function generate() {
     facade texture and color, roof overhang, columns or pillars,
     any balcony, gate and entrance path, and symmetry details.`,
 
-    // Card 2: Floor Plan
     `Describe the floor plan layout of this building:
     ${baseDesign}
     Include all rooms with approximate dimensions,
@@ -222,7 +225,6 @@ async function generate() {
     kitchen layout type, master bedroom en-suite details,
     bathroom positions, and traffic flow through the home.`,
 
-    // Card 3: Interior Cutaway
     `Describe a dollhouse cutaway interior view of this building:
     ${baseDesign}
     The front wall is removed revealing all rooms at once.
@@ -231,7 +233,6 @@ async function generate() {
     flooring types per room, wall colors, ceiling treatment,
     lighting positions and how rooms connect visually.`,
 
-    // Card 4: Technical Specs
     `Generate technical specifications for this building:
     ${baseDesign}
     Include foundation type for ${soil} soil, structural system,
@@ -243,7 +244,6 @@ async function generate() {
 
   ];
 
-  // --- Reset UI ---
   clearError();
   document.getElementById('generateBtn').disabled = true;
   document.getElementById('specsCard').classList.add('show');
@@ -251,7 +251,6 @@ async function generate() {
   [0, 1, 2, 3, 4].forEach(i => showLoading(i));
   buildSummary(beds, baths, type, plotW, plotL, seed);
 
-  // --- Call Groq for all 5 outputs ---
   try {
 
     const results = await Promise.allSettled(
@@ -332,4 +331,4 @@ loadTheme();
 // LOG READY
 // ========================
 
-console.log('MY ArchGen — Powered by Groq AI — Ready');
+console.log('MY ArchGen — Powered by Gemini AI — Ready');
