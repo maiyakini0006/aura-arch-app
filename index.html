@@ -8,9 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
 
-    /* ========================
-       RESET & BASE
-    ======================== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -20,9 +17,6 @@
       overflow-x: hidden;
     }
 
-    /* ========================
-       NAVBAR
-    ======================== */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -92,9 +86,6 @@
 
     .nav-cta:hover { opacity: 0.88; }
 
-    /* ========================
-       HERO SECTION
-    ======================== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -218,9 +209,6 @@
 
     .btn-secondary:hover { border-color: #C9A84C; transform: translateY(-1px); }
 
-    /* ========================
-       STATS BAR
-    ======================== */
     .stats-bar {
       display: flex;
       gap: 40px;
@@ -253,9 +241,6 @@
       align-self: stretch;
     }
 
-    /* ========================
-       APP PREVIEW
-    ======================== */
     .preview-section {
       padding: 60px 40px;
       max-width: 1100px;
@@ -332,9 +317,6 @@
     .preview-line.short { width: 50%; }
     .preview-line.med { width: 80%; }
 
-    /* ========================
-       FEATURES SECTION
-    ======================== */
     .features {
       padding: 80px 40px;
       max-width: 1100px;
@@ -415,9 +397,6 @@
       line-height: 1.7;
     }
 
-    /* ========================
-       HOW IT WORKS
-    ======================== */
     .how {
       padding: 80px 40px;
       background: #1A1815;
@@ -484,9 +463,6 @@
       line-height: 1.6;
     }
 
-    /* ========================
-       PRICING SECTION
-    ======================== */
     .pricing {
       padding: 80px 40px;
       max-width: 1100px;
@@ -621,9 +597,6 @@
 
     .price-btn.gold:hover { opacity: 0.88; }
 
-    /* ========================
-       CTA SECTION
-    ======================== */
     .cta {
       padding: 100px 40px;
       text-align: center;
@@ -660,9 +633,6 @@
       line-height: 1.7;
     }
 
-    /* ========================
-       FOOTER
-    ======================== */
     .footer {
       padding: 32px 40px;
       border-top: 1px solid #333230;
@@ -687,17 +657,11 @@
       letter-spacing: 0.06em;
     }
 
-    /* ========================
-       ANIMATIONS
-    ======================== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ========================
-       RESPONSIVE
-    ======================== */
     @media (max-width: 768px) {
       .nav { padding: 12px 20px; }
       .nav-links { display: none; }
@@ -720,7 +684,6 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="nav">
     <div class="nav-logo">
       <div class="nav-mark">AG</div>
@@ -730,11 +693,10 @@
       <a href="#features">Features</a>
       <a href="#how">How It Works</a>
       <a href="#pricing">Pricing</a>
-      <a href="index.html" class="nav-cta">Launch App →</a>
+      <a href="app.html" class="nav-cta">Launch App →</a>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-badge">
@@ -749,7 +711,7 @@
       MY ArchGen generates complete, consistent residential building concepts — 3D views, facades, floor plans, and interiors — all from a simple description. Built for Africa.
     </p>
     <div class="hero-buttons">
-      <a href="index.html" class="btn-primary">
+      <a href="app.html" class="btn-primary">
         🏗️ Start Designing Free
       </a>
       <a href="#how" class="btn-secondary">
@@ -779,7 +741,6 @@
     </div>
   </section>
 
-  <!-- APP PREVIEW -->
   <section class="preview-section">
     <div class="preview-frame">
       <div class="preview-bar">
@@ -825,7 +786,6 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="features" id="features">
     <div class="section-label">Why MY ArchGen</div>
     <h2 class="section-title">Everything You Need To<br>Design With Confidence</h2>
@@ -864,7 +824,6 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
   <section class="how" id="how">
     <div class="how-inner">
       <div class="section-label">Simple Process</div>
@@ -876,16 +835,4 @@
           <div class="step-title">Enter Plot Size</div>
           <div class="step-desc">Input your exact plot width and length in feet to get a perfectly fitted design</div>
         </div>
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <div class="step-title">Choose Your Style</div>
-          <div class="step-desc">Select building type, architectural style, roof style, and room configuration</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <div class="step-title">Set Your Seed</div>
-          <div class="step-desc">Use a fixed seed number to ensure all 4 outputs show the exact same building</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">04</div>
-          <div class="step-title">
+        <div class="step-
