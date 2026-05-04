@@ -1,4 +1,45 @@
 // ========================
+// AUTH PROTECTION
+// ========================
+
+function checkAuth() {
+  const session = localStorage.getItem('archgen_session');
+
+  if (!session) {
+    window.location.href = 'auth.html';
+    return;
+  }
+
+  const user = JSON.parse(session);
+
+  if (!user.loggedIn) {
+    window.location.href = 'auth.html';
+    return;
+  }
+
+  // Hide auth check screen
+  document.getElementById('authCheck').style.display = 'none';
+
+  // Fill user info in header
+  document.getElementById('userName').textContent  = user.name;
+  document.getElementById('userEmail').textContent = user.email;
+  document.getElementById('userAvatar').textContent = user.avatar ||
+    user.name.slice(0, 2).toUpperCase();
+
+  // Load this user's saved projects
+  loadProjects();
+}
+
+// Logout
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('archgen_session');
+  window.location.href = 'auth.html';
+});
+
+// Run auth check immediately
+checkAuth();
+
+// ========================
 // TOGGLE BUTTON LOGIC
 // ========================
 
@@ -20,7 +61,7 @@ toggleGroups.forEach(group => {
 });
 
 // ========================
-// RANDOMIZE SEED BUTTON
+// RANDOMIZE SEED
 // ========================
 
 document.getElementById('randomBtn').addEventListener('click', () => {
@@ -33,7 +74,7 @@ document.getElementById('randomBtn').addEventListener('click', () => {
 // ========================
 
 function getSelected(groupId) {
-  const group = document.getElementById(groupId);
+  const group  = document.getElementById(groupId);
   const active = group.querySelectorAll('.toggle.active');
   return [...active].map(btn => btn.dataset.val);
 }
@@ -57,12 +98,12 @@ function setStatus(text, active = false) {
 // ========================
 
 function showLoading(index) {
-  const loader  = document.getElementById('load' + index);
-  const ph      = document.getElementById('ph' + index);
-  const result  = document.getElementById('res' + index);
+  const loader = document.getElementById('load' + index);
+  const ph     = document.getElementById('ph'   + index);
+  const result = document.getElementById('res'  + index);
 
   if (loader) loader.classList.add('show');
-  if (ph)     ph.style.display  = 'none';
+  if (ph)     ph.style.display     = 'none';
   if (result) result.style.display = 'none';
 }
 
@@ -72,23 +113,23 @@ function showLoading(index) {
 
 function showResult(index, text) {
   const loader = document.getElementById('load' + index);
-  const ph     = document.getElementById('ph' + index);
-  const result = document.getElementById('res' + index);
+  const ph     = document.getElementById('ph'   + index);
+  const result = document.getElementById('res'  + index);
 
   if (loader) loader.classList.remove('show');
   if (ph)     ph.style.display = 'none';
 
   if (result) {
-    result.textContent = text;
-    result.style.display       = 'block';
-    result.style.width         = '100%';
-    result.style.textAlign     = 'left';
-    result.style.fontSize      = '12px';
-    result.style.lineHeight    = '1.8';
-    result.style.whiteSpace    = 'pre-wrap';
-    result.style.wordWrap      = 'break-word';
-    result.style.color         = 'var(--text-main)';
-    result.style.padding       = '4px 0';
+    result.textContent        = text;
+    result.style.display      = 'block';
+    result.style.width        = '100%';
+    result.style.textAlign    = 'left';
+    result.style.fontSize     = '12px';
+    result.style.lineHeight   = '1.8';
+    result.style.whiteSpace   = 'pre-wrap';
+    result.style.wordWrap     = 'break-word';
+    result.style.color        = 'var(--text-main)';
+    result.style.padding      = '4px 0';
   }
 }
 
@@ -115,7 +156,7 @@ function clearError() {
 
 function showPlaceholder(index) {
   const loader = document.getElementById('load' + index);
-  const ph     = document.getElementById('ph' + index);
+  const ph     = document.getElementById('ph'   + index);
 
   if (loader) loader.classList.remove('show');
   if (ph)     ph.style.display = 'flex';
@@ -162,7 +203,7 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 
 async function callClaude(prompt) {
 
-  const GEMINI_KEY = 'AIzaSyAPbsyzEC8D8DxmwymJhz6PRS3wZ99C4Wo';
+  const GEMINI_KEY = 'AIzaSyB79uyTnw91NzlNLRh-s_GmwT6j2Wz32ug';
 
   const systemPrompt = 'You are MY ArchGen, a professional architectural design AI specializing in Nigerian and African residential buildings. Always describe the EXACT same building across all outputs. Same materials, colors, roof, windows, doors. Write in clear flowing prose. No bullet points. No markdown headers. No asterisks. Be specific, technical and vivid. Around 180 words per output.';
 
@@ -170,19 +211,13 @@ async function callClaude(prompt) {
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY,
     {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              {
-                text: systemPrompt + '\n\n' + prompt
-              }
-            ]
-          }
-        ],
+        contents: [{
+          parts: [{
+            text: systemPrompt + '\n\n' + prompt
+          }]
+        }],
         generationConfig: {
           maxOutputTokens: 1000,
           temperature: 0.7
@@ -193,9 +228,7 @@ async function callClaude(prompt) {
 
   const data = await response.json();
 
-  if (data.error) {
-    throw new Error(data.error.message);
-  }
+  if (data.error) throw new Error(data.error.message);
 
   if (
     !data.candidates ||
@@ -209,6 +242,12 @@ async function callClaude(prompt) {
 
   return data.candidates[0].content.parts[0].text;
 }
+
+// ========================
+// STORE LAST GENERATION
+// ========================
+
+let lastGeneration = null;
 
 // ========================
 // MAIN GENERATE FUNCTION
@@ -283,9 +322,10 @@ async function generate() {
 
   ];
 
-  // --- Reset UI ---
+  // Reset UI
   clearError();
   document.getElementById('generateBtn').disabled = true;
+  document.getElementById('saveBtn').style.display = 'none';
 
   const specsCard = document.getElementById('specsCard');
   if (specsCard) specsCard.classList.add('show');
@@ -294,21 +334,37 @@ async function generate() {
   [0, 1, 2, 3, 4].forEach(i => showLoading(i));
   buildSummary(beds, baths, type, plotW, plotL, seed);
 
-  // --- Call Gemini for all 5 outputs at once ---
   try {
 
     const results = await Promise.allSettled(
       prompts.map(p => callClaude(p))
     );
 
+    const outputs = [];
+
     results.forEach((result, index) => {
       if (result.status === 'fulfilled') {
         showResult(index, result.value);
+        outputs.push(result.value);
       } else {
         showPlaceholder(index);
+        outputs.push('');
         console.error('Card ' + index + ' failed:', result.reason);
       }
     });
+
+    // Store last generation for saving
+    lastGeneration = {
+      plotW, plotL, type, style, roof,
+      beds, baths, extras, soil, zoning,
+      seed, requirements, outputs,
+      date: new Date().toLocaleDateString('en-NG', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      })
+    };
+
+    // Show save button
+    document.getElementById('saveBtn').style.display = 'block';
 
     setStatus('Generation complete ✓', true);
     setTimeout(() => setStatus('Ready to generate', false), 4000);
@@ -321,16 +377,210 @@ async function generate() {
   } finally {
     document.getElementById('generateBtn').disabled = false;
   }
-
 }
 
 // ========================
-// GENERATE BUTTON CLICK
+// GENERATE BUTTON
 // ========================
 
 document.getElementById('generateBtn').addEventListener('click', () => {
   generate();
 });
+
+// ========================
+// SAVE PROJECT LOGIC
+// ========================
+
+// Open save modal
+document.getElementById('saveBtn').addEventListener('click', () => {
+  document.getElementById('projectNameInput').value = '';
+  document.getElementById('saveModal').classList.add('show');
+  document.getElementById('projectNameInput').focus();
+});
+
+// Cancel save
+document.getElementById('cancelSave').addEventListener('click', () => {
+  document.getElementById('saveModal').classList.remove('show');
+});
+
+// Confirm save
+document.getElementById('confirmSave').addEventListener('click', () => {
+  const name = document.getElementById('projectNameInput').value.trim();
+
+  if (!name) {
+    document.getElementById('projectNameInput').style.borderColor = '#E24B4A';
+    return;
+  }
+
+  if (!lastGeneration) return;
+
+  // Get current user
+  const session = JSON.parse(localStorage.getItem('archgen_session'));
+  const userKey = 'archgen_projects_' + session.email;
+
+  // Get existing projects
+  const existing = localStorage.getItem(userKey);
+  const projects = existing ? JSON.parse(existing) : [];
+
+  // Add new project
+  const newProject = {
+    id: Date.now(),
+    name: name,
+    ...lastGeneration
+  };
+
+  projects.unshift(newProject);
+  localStorage.setItem(userKey, JSON.stringify(projects));
+
+  // Close modal
+  document.getElementById('saveModal').classList.remove('show');
+
+  // Reload projects list
+  loadProjects();
+
+  // Show success
+  setStatus('Project saved: ' + name, true);
+  setTimeout(() => setStatus('Ready to generate', false), 3000);
+});
+
+// Close modal on background click
+document.getElementById('saveModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('saveModal')) {
+    document.getElementById('saveModal').classList.remove('show');
+  }
+});
+
+// ========================
+// LOAD PROJECTS LIST
+// ========================
+
+function loadProjects() {
+  const session  = JSON.parse(localStorage.getItem('archgen_session'));
+  const userKey  = 'archgen_projects_' + session.email;
+  const existing = localStorage.getItem(userKey);
+  const projects = existing ? JSON.parse(existing) : [];
+  const list     = document.getElementById('projectsList');
+
+  if (projects.length === 0) {
+    list.innerHTML = `
+      <div class="no-projects">
+        No saved projects yet.<br/>Generate and save your first design!
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = projects.map(p => `
+    <div class="project-item" onclick="loadProject(${p.id})">
+      <div class="project-item-info">
+        <div class="project-item-name">${p.name}</div>
+        <div class="project-item-meta">${p.beds}BR ${p.type} · ${p.plotW}×${p.plotL}ft · ${p.date}</div>
+      </div>
+      <button
+        class="project-item-delete"
+        onclick="deleteProject(event, ${p.id})"
+        title="Delete project"
+      >🗑️</button>
+    </div>
+  `).join('');
+}
+
+// ========================
+// LOAD A SAVED PROJECT
+// ========================
+
+function loadProject(id) {
+  const session  = JSON.parse(localStorage.getItem('archgen_session'));
+  const userKey  = 'archgen_projects_' + session.email;
+  const existing = localStorage.getItem(userKey);
+  const projects = existing ? JSON.parse(existing) : [];
+  const project  = projects.find(p => p.id === id);
+
+  if (!project) return;
+
+  // Restore form inputs
+  document.getElementById('plotW').value = project.plotW;
+  document.getElementById('plotL').value = project.plotL;
+  document.getElementById('bedrooms').value = project.beds;
+  document.getElementById('bathrooms').value = project.baths;
+  document.getElementById('soil').value = project.soil;
+  document.getElementById('zoning').value = project.zoning;
+  document.getElementById('seed').value = project.seed;
+  document.getElementById('requirements').value = project.requirements || '';
+
+  // Restore building type toggle
+  restoreToggle('buildingType', project.type);
+  restoreToggle('archStyle', project.style);
+  restoreToggle('roofStyle', project.roof);
+
+  // Restore extras
+  const extrasArr = project.extras ? project.extras.split(', ') : [];
+  document.querySelectorAll('#extras .toggle').forEach(btn => {
+    if (extrasArr.includes(btn.dataset.val)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Restore outputs
+  if (project.outputs && project.outputs.length > 0) {
+    const specsCard = document.getElementById('specsCard');
+    if (specsCard) specsCard.classList.add('show');
+
+    buildSummary(
+      project.beds, project.baths, project.type,
+      project.plotW, project.plotL, project.seed
+    );
+
+    project.outputs.forEach((text, index) => {
+      if (text) {
+        showResult(index, text);
+      } else {
+        showPlaceholder(index);
+      }
+    });
+
+    document.getElementById('saveBtn').style.display = 'block';
+    setStatus('Project loaded: ' + project.name, true);
+    setTimeout(() => setStatus('Ready to generate', false), 3000);
+  }
+
+  // Scroll to top of canvas
+  document.querySelector('.canvas').scrollTop = 0;
+}
+
+// ========================
+// RESTORE TOGGLE HELPER
+// ========================
+
+function restoreToggle(groupId, value) {
+  document.querySelectorAll('#' + groupId + ' .toggle').forEach(btn => {
+    if (btn.dataset.val === value) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// ========================
+// DELETE A PROJECT
+// ========================
+
+function deleteProject(event, id) {
+  event.stopPropagation();
+
+  const session  = JSON.parse(localStorage.getItem('archgen_session'));
+  const userKey  = 'archgen_projects_' + session.email;
+  const existing = localStorage.getItem(userKey);
+  const projects = existing ? JSON.parse(existing) : [];
+
+  const updated = projects.filter(p => p.id !== id);
+  localStorage.setItem(userKey, JSON.stringify(updated));
+
+  loadProjects();
+}
 
 // ========================
 // NIGHT MODE TOGGLE
@@ -378,40 +628,4 @@ loadTheme();
 // LOG READY
 // ========================
 
-console.log('MY ArchGen — Powered by Gemini AI — Ready');
-// ========================
-// AUTH PROTECTION
-// ========================
-
-function checkAuth() {
-  const session = localStorage.getItem('archgen_session');
-
-  if (!session) {
-    window.location.href = 'auth.html';
-    return;
-  }
-
-  const user = JSON.parse(session);
-
-  if (!user.loggedIn) {
-    window.location.href = 'auth.html';
-    return;
-  }
-
-  // Show the app
-  document.getElementById('authCheck').style.display = 'none';
-
-  // Fill user info in header
-  document.getElementById('userName').textContent  = user.name;
-  document.getElementById('userEmail').textContent = user.email;
-  document.getElementById('userAvatar').textContent = user.avatar || user.name.slice(0,2).toUpperCase();
-}
-
-// Logout button
-document.getElementById('logoutBtn').addEventListener('click', () => {
-  localStorage.removeItem('archgen_session');
-  window.location.href = 'auth.html';
-});
-
-// Run auth check immediately
-checkAuth();
+console.log('MY ArchGen — Save Project Ready — Powered by Gemini AI');
