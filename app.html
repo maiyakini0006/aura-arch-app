@@ -8,6 +8,22 @@
 </head>
 <body>
 
+  <!-- LOGIN CHECK SCREEN -->
+  <div id="authCheck" style="
+    position:fixed;inset:0;background:#0F0E0C;
+    display:flex;align-items:center;justify-content:center;
+    z-index:9999;flex-direction:column;gap:16px;
+  ">
+    <div style="
+      width:48px;height:48px;border:2px solid #333230;
+      border-top-color:#C9A84C;border-radius:50%;
+      animation:spin 0.8s linear infinite;
+    "></div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;color:#8A8880;">
+      Checking your session...
+    </div>
+  </div>
+
   <!-- HEADER -->
   <header class="header">
     <div class="logo">
@@ -17,16 +33,32 @@
         <p>One Design. One Vision. Zero Inconsistency.</p>
       </div>
     </div>
-    <div class="badge">AI-Powered</div>
+    <div class="header-right">
+
+      <!-- USER INFO -->
+      <div class="user-pill" id="userPill">
+        <div class="user-avatar" id="userAvatar">--</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Loading...</div>
+          <div class="user-email" id="userEmail">...</div>
+        </div>
+        <button class="btn-logout" id="logoutBtn">Sign Out</button>
+      </div>
+
+      <button class="night-toggle" id="nightToggle">
+        <span class="night-icon">🌙</span>
+        <span class="night-label">Night Mode</span>
+      </button>
+      <div class="badge">AI-Powered</div>
+    </div>
   </header>
 
   <!-- MAIN LAYOUT -->
   <div class="main">
 
-    <!-- LEFT PANEL: INPUT FORM -->
+    <!-- LEFT PANEL -->
     <aside class="panel">
 
-      <!-- SECTION: PLOT SIZE -->
       <div class="section">
         <div class="section-title">Plot Configuration</div>
         <div class="row">
@@ -47,7 +79,6 @@
         </div>
       </div>
 
-      <!-- SECTION: BUILDING TYPE -->
       <div class="section">
         <div class="section-title">Building Type</div>
         <div class="toggle-group" id="buildingType">
@@ -57,7 +88,6 @@
         </div>
       </div>
 
-      <!-- SECTION: STYLE -->
       <div class="section">
         <div class="section-title">Architectural Style</div>
         <div class="toggle-group" id="archStyle">
@@ -68,7 +98,6 @@
         </div>
       </div>
 
-      <!-- SECTION: ROOF -->
       <div class="section">
         <div class="section-title">Roof Style</div>
         <div class="toggle-group" id="roofStyle">
@@ -79,7 +108,6 @@
         </div>
       </div>
 
-      <!-- SECTION: ROOMS -->
       <div class="section">
         <div class="section-title">Rooms & Layout</div>
         <div class="row">
@@ -111,10 +139,9 @@
         </div>
       </div>
 
-      <!-- SECTION: SITE CONDITIONS -->
       <div class="section">
         <div class="section-title">Site Conditions</div>
-        <div class="field" style="margin-bottom: 12px;">
+        <div class="field" style="margin-bottom:12px">
           <label>Soil Type</label>
           <select id="soil">
             <option value="Firm Clay">Firm Clay</option>
@@ -133,7 +160,6 @@
         </div>
       </div>
 
-      <!-- SECTION: SEED -->
       <div class="section">
         <div class="section-title">Consistency Seed</div>
         <div class="field">
@@ -148,26 +174,23 @@
         </div>
       </div>
 
-      <!-- SECTION: REQUIREMENTS -->
       <div class="section">
         <div class="section-title">Specific Requirements</div>
         <textarea
           id="requirements"
-          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior with brown roof tiles..."
+          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior..."
         ></textarea>
       </div>
 
-      <!-- GENERATE BUTTON -->
       <button class="btn-generate" id="generateBtn">
         Generate Blueprints
       </button>
 
     </aside>
 
-    <!-- RIGHT CANVAS: OUTPUT AREA -->
+    <!-- RIGHT CANVAS -->
     <main class="canvas">
 
-      <!-- CANVAS HEADER -->
       <div class="canvas-header">
         <h2 class="canvas-title">Design Output</h2>
         <div class="status-row">
@@ -176,24 +199,20 @@
         </div>
       </div>
 
-      <!-- ERROR BOX -->
       <div class="error-box" id="errorBox"></div>
 
-      <!-- DESIGN SUMMARY CARD -->
       <div class="summary-card" id="summaryCard">
         <div class="summary-title" id="summaryTitle">Design Summary</div>
         <div class="summary-grid" id="summaryGrid"></div>
       </div>
 
-      <!-- OUTPUT GRID: 4 CARDS -->
       <div class="output-grid">
 
-        <!-- CARD 1: 3D VIEW -->
         <div class="output-card">
           <div class="card-header">
             <span class="card-type">3D Isometric View</span>
           </div>
-          <div class="card-body" id="card0">
+          <div class="card-body">
             <div class="loading" id="load0">
               <div class="spinner"></div>
               <span>Generating exterior...</span>
@@ -206,12 +225,11 @@
           </div>
         </div>
 
-        <!-- CARD 2: FRONT FACADE -->
         <div class="output-card">
           <div class="card-header">
             <span class="card-type">Front Facade</span>
           </div>
-          <div class="card-body" id="card1">
+          <div class="card-body">
             <div class="loading" id="load1">
               <div class="spinner"></div>
               <span>Rendering facade...</span>
@@ -224,12 +242,11 @@
           </div>
         </div>
 
-        <!-- CARD 3: FLOOR PLAN -->
         <div class="output-card">
           <div class="card-header">
             <span class="card-type">Floor Plan Layout</span>
           </div>
-          <div class="card-body" id="card2">
+          <div class="card-body">
             <div class="loading" id="load2">
               <div class="spinner"></div>
               <span>Drawing floor plan...</span>
@@ -242,12 +259,11 @@
           </div>
         </div>
 
-        <!-- CARD 4: INTERIOR -->
         <div class="output-card">
           <div class="card-header">
             <span class="card-type">Interior Cutaway View</span>
           </div>
-          <div class="card-body" id="card3">
+          <div class="card-body">
             <div class="loading" id="load3">
               <div class="spinner"></div>
               <span>Visualizing interior...</span>
@@ -262,12 +278,11 @@
 
       </div>
 
-      <!-- FULL WIDTH: TECHNICAL SPECS CARD -->
       <div class="output-card specs-card" id="specsCard">
         <div class="card-header">
           <span class="card-type">Technical Specifications & Materials</span>
         </div>
-        <div class="card-body" id="card4">
+        <div class="card-body">
           <div class="loading" id="load4">
             <div class="spinner"></div>
             <span>Compiling specifications...</span>
@@ -281,7 +296,6 @@
       </div>
 
     </main>
-
   </div>
 
   <script src="app.js"></script>
