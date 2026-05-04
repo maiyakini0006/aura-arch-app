@@ -379,3 +379,39 @@ loadTheme();
 // ========================
 
 console.log('MY ArchGen — Powered by Gemini AI — Ready');
+// ========================
+// AUTH PROTECTION
+// ========================
+
+function checkAuth() {
+  const session = localStorage.getItem('archgen_session');
+
+  if (!session) {
+    window.location.href = 'auth.html';
+    return;
+  }
+
+  const user = JSON.parse(session);
+
+  if (!user.loggedIn) {
+    window.location.href = 'auth.html';
+    return;
+  }
+
+  // Show the app
+  document.getElementById('authCheck').style.display = 'none';
+
+  // Fill user info in header
+  document.getElementById('userName').textContent  = user.name;
+  document.getElementById('userEmail').textContent = user.email;
+  document.getElementById('userAvatar').textContent = user.avatar || user.name.slice(0,2).toUpperCase();
+}
+
+// Logout button
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('archgen_session');
+  window.location.href = 'auth.html';
+});
+
+// Run auth check immediately
+checkAuth();
