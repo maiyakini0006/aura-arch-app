@@ -1,71 +1,331 @@
-<div class="output-card">
-  <div class="card-header">
-    <span class="card-type">3D Isometric View</span>
-  </div>
-  <div class="card-body">
-    <div class="loading" id="load0">
-      <div class="spinner"></div>
-      <span>Generating exterior...</span>
-    </div>
-    <div class="placeholder" id="ph0">
-      <div class="ph-icon">🏗️</div>
-      <div class="ph-text">3D view will appear here</div>
-    </div>
-    <div class="svg-display" id="svg0"></div>
-    <div class="result-text" id="res0"></div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY ArchGen — AI Architectural Design</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-<div class="output-card">
-  <div class="card-header">
-    <span class="card-type">Front Facade</span>
-  </div>
-  <div class="card-body">
-    <div class="loading" id="load1">
-      <div class="spinner"></div>
-      <span>Rendering facade...</span>
+  <!-- LOGIN CHECK SCREEN -->
+  <div id="authCheck" style="
+    position:fixed;inset:0;background:#0F0E0C;
+    display:flex;align-items:center;justify-content:center;
+    z-index:9999;flex-direction:column;gap:16px;
+  ">
+    <div style="
+      width:48px;height:48px;border:2px solid #333230;
+      border-top-color:#C9A84C;border-radius:50%;
+      animation:spin 0.8s linear infinite;
+    "></div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;color:#8A8880;">
+      Checking your session...
     </div>
-    <div class="placeholder" id="ph1">
-      <div class="ph-icon">🏠</div>
-      <div class="ph-text">Front elevation will appear here</div>
-    </div>
-    <div class="svg-display" id="svg1"></div>
-    <div class="result-text" id="res1"></div>
   </div>
-</div>
 
-<div class="output-card">
-  <div class="card-header">
-    <span class="card-type">Floor Plan Layout</span>
-  </div>
-  <div class="card-body">
-    <div class="loading" id="load2">
-      <div class="spinner"></div>
-      <span>Drawing floor plan...</span>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-mark">AG</div>
+      <div class="logo-text">
+        <h1>MY <span>ArchGen</span></h1>
+        <p>One Design. One Vision. Zero Inconsistency.</p>
+      </div>
     </div>
-    <div class="placeholder" id="ph2">
-      <div class="ph-icon">📐</div>
-      <div class="ph-text">Floor plan will appear here</div>
+    <div class="header-right">
+      <div class="user-pill" id="userPill">
+        <div class="user-avatar" id="userAvatar">--</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Loading...</div>
+          <div class="user-email" id="userEmail">...</div>
+        </div>
+        <button class="btn-logout" id="logoutBtn">Sign Out</button>
+      </div>
+      <button class="night-toggle" id="nightToggle">
+        <span class="night-icon">🌙</span>
+        <span class="night-label">Night Mode</span>
+      </button>
+      <div class="badge">AI-Powered</div>
     </div>
-    <div class="svg-display" id="svg2"></div>
-    <div class="result-text" id="res2"></div>
-  </div>
-</div>
+  </header>
 
-<div class="output-card">
-  <div class="card-header">
-    <span class="card-type">Interior Cutaway View</span>
+  <!-- MAIN LAYOUT -->
+  <div class="main">
+
+    <!-- LEFT PANEL -->
+    <aside class="panel">
+
+      <div class="section">
+        <div class="section-title">Plot Configuration</div>
+        <div class="row">
+          <div class="field">
+            <label>Plot Width</label>
+            <div class="input-unit">
+              <input type="number" id="plotW" value="50" min="10" />
+              <span class="unit">ft</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Plot Length</label>
+            <div class="input-unit">
+              <input type="number" id="plotL" value="100" min="10" />
+              <span class="unit">ft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Building Type</div>
+        <div class="toggle-group" id="buildingType">
+          <button class="toggle active" data-val="Bungalow">Bungalow</button>
+          <button class="toggle" data-val="Duplex">Duplex</button>
+          <button class="toggle" data-val="Terrace">Terrace</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Architectural Style</div>
+        <div class="toggle-group" id="archStyle">
+          <button class="toggle active" data-val="Modern Nigerian">Modern Nigerian</button>
+          <button class="toggle" data-val="Contemporary">Contemporary</button>
+          <button class="toggle" data-val="Colonial">Colonial</button>
+          <button class="toggle" data-val="Minimalist">Minimalist</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Roof Style</div>
+        <div class="toggle-group" id="roofStyle">
+          <button class="toggle active" data-val="Hip Roof">Hip Roof</button>
+          <button class="toggle" data-val="Flat Roof">Flat Roof</button>
+          <button class="toggle" data-val="Gable Roof">Gable Roof</button>
+          <button class="toggle" data-val="Mansard">Mansard</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Rooms & Layout</div>
+        <div class="row">
+          <div class="field">
+            <label>Bedrooms</label>
+            <select id="bedrooms">
+              <option value="2">2 Bedrooms</option>
+              <option value="3" selected>3 Bedrooms</option>
+              <option value="4">4 Bedrooms</option>
+              <option value="5">5 Bedrooms</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Bathrooms</label>
+            <select id="bathrooms">
+              <option value="1">1 Bathroom</option>
+              <option value="2" selected>2 Bathrooms</option>
+              <option value="3">3 Bathrooms</option>
+            </select>
+          </div>
+        </div>
+        <div class="toggle-group multi" id="extras">
+          <button class="toggle active" data-val="Living Room">Living Room</button>
+          <button class="toggle active" data-val="Dining">Dining</button>
+          <button class="toggle active" data-val="Kitchen">Kitchen</button>
+          <button class="toggle" data-val="Store">Store</button>
+          <button class="toggle" data-val="Study">Study</button>
+          <button class="toggle" data-val="Garage">Garage</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Site Conditions</div>
+        <div class="field" style="margin-bottom:12px">
+          <label>Soil Type</label>
+          <select id="soil">
+            <option value="Firm Clay">Firm Clay</option>
+            <option value="Sandy Loam" selected>Sandy Loam</option>
+            <option value="Rocky">Rocky</option>
+            <option value="Swampy">Swampy</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Zoning / Setback</label>
+          <select id="zoning">
+            <option value="3m setback">3m setback (standard)</option>
+            <option value="5m setback">5m setback (commercial zone)</option>
+            <option value="No restriction">No restriction</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Consistency Seed</div>
+        <div class="field">
+          <label>Generation Seed</label>
+          <div class="seed-row">
+            <input type="number" id="seed" value="12345" />
+            <button class="btn-random" id="randomBtn">Randomize</button>
+          </div>
+        </div>
+        <div class="seed-info">
+          🔒 Fixed seed keeps all 4 outputs showing the same building
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Specific Requirements</div>
+        <textarea
+          id="requirements"
+          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior..."
+        ></textarea>
+      </div>
+
+      <button class="btn-generate" id="generateBtn">
+        Generate Blueprints
+      </button>
+
+      <!-- SAVED PROJECTS PANEL -->
+      <div class="section" style="margin-top:20px">
+        <div class="section-title">Saved Projects</div>
+        <div class="projects-list" id="projectsList">
+          <div class="no-projects">No saved projects yet.<br/>Generate and save your first design!</div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT CANVAS -->
+    <main class="canvas">
+
+      <div class="canvas-header">
+        <h2 class="canvas-title">Design Output</h2>
+        <div class="canvas-actions">
+          <button class="btn-save" id="saveBtn" style="display:none">
+            💾 Save Project
+          </button>
+          <div class="status-row">
+            <div class="status-dot" id="statusDot"></div>
+            <span class="status-text" id="statusText">Ready to generate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVE MODAL -->
+      <div class="save-modal" id="saveModal">
+        <div class="save-modal-box">
+          <div class="save-modal-title">💾 Save This Project</div>
+          <div class="save-modal-sub">Give your design a name to save it</div>
+          <input
+            type="text"
+            class="save-modal-input"
+            id="projectNameInput"
+            placeholder="e.g. Lagos 3-Bedroom Bungalow"
+          />
+          <div class="save-modal-btns">
+            <button class="save-modal-cancel" id="cancelSave">Cancel</button>
+            <button class="save-modal-confirm" id="confirmSave">Save Project</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="error-box" id="errorBox"></div>
+
+      <div class="summary-card" id="summaryCard">
+        <div class="summary-title" id="summaryTitle">Design Summary</div>
+        <div class="summary-grid" id="summaryGrid"></div>
+      </div>
+
+      <div class="output-grid">
+
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">3D Isometric View</span>
+          </div>
+          <div class="card-body">
+            <div class="loading" id="load0">
+              <div class="spinner"></div>
+              <span>Generating exterior...</span>
+            </div>
+            <div class="placeholder" id="ph0">
+              <div class="ph-icon">🏗️</div>
+              <div class="ph-text">3D view will appear here</div>
+            </div>
+            <div class="result-text" id="res0"></div>
+          </div>
+        </div>
+
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">Front Facade</span>
+          </div>
+          <div class="card-body">
+            <div class="loading" id="load1">
+              <div class="spinner"></div>
+              <span>Rendering facade...</span>
+            </div>
+            <div class="placeholder" id="ph1">
+              <div class="ph-icon">🏠</div>
+              <div class="ph-text">Front elevation will appear here</div>
+            </div>
+            <div class="result-text" id="res1"></div>
+          </div>
+        </div>
+
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">Floor Plan Layout</span>
+          </div>
+          <div class="card-body">
+            <div class="loading" id="load2">
+              <div class="spinner"></div>
+              <span>Drawing floor plan...</span>
+            </div>
+            <div class="placeholder" id="ph2">
+              <div class="ph-icon">📐</div>
+              <div class="ph-text">Floor plan will appear here</div>
+            </div>
+            <div class="result-text" id="res2"></div>
+          </div>
+        </div>
+
+        <div class="output-card">
+          <div class="card-header">
+            <span class="card-type">Interior Cutaway View</span>
+          </div>
+          <div class="card-body">
+            <div class="loading" id="load3">
+              <div class="spinner"></div>
+              <span>Visualizing interior...</span>
+            </div>
+            <div class="placeholder" id="ph3">
+              <div class="ph-icon">🛋️</div>
+              <div class="ph-text">Dollhouse interior will appear here</div>
+            </div>
+            <div class="result-text" id="res3"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="output-card specs-card" id="specsCard">
+        <div class="card-header">
+          <span class="card-type">Technical Specifications & Materials</span>
+        </div>
+        <div class="card-body">
+          <div class="loading" id="load4">
+            <div class="spinner"></div>
+            <span>Compiling specifications...</span>
+          </div>
+          <div class="placeholder" id="ph4">
+            <div class="ph-icon">📋</div>
+            <div class="ph-text">Technical specs will appear here</div>
+          </div>
+          <div class="result-text" id="res4"></div>
+        </div>
+      </div>
+
+    </main>
   </div>
-  <div class="card-body">
-    <div class="loading" id="load3">
-      <div class="spinner"></div>
-      <span>Visualizing interior...</span>
-    </div>
-    <div class="placeholder" id="ph3">
-      <div class="ph-icon">🛋️</div>
-      <div class="ph-text">Dollhouse interior will appear here</div>
-    </div>
-    <div class="svg-display" id="svg3"></div>
-    <div class="result-text" id="res3"></div>
-  </div>
-</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
