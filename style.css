@@ -56,6 +56,8 @@ body.light {
   align-items: center;
   justify-content: space-between;
   transition: background 0.3s, border-color 0.3s;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .header-right {
@@ -83,6 +85,7 @@ body.light {
   align-items: center;
   justify-content: center;
   clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  flex-shrink: 0;
 }
 
 .logo-text h1 {
@@ -164,10 +167,7 @@ body.light {
   flex-shrink: 0;
 }
 
-.user-info {
-  display: flex;
-  flex-direction: column;
-}
+.user-info { display: flex; flex-direction: column; }
 
 .user-name {
   font-family: 'Syne', sans-serif;
@@ -295,9 +295,7 @@ textarea {
 input[type="number"]:focus,
 input[type="text"]:focus,
 select:focus,
-textarea:focus {
-  border-color: var(--gold);
-}
+textarea:focus { border-color: var(--gold); }
 
 select {
   appearance: none;
@@ -307,11 +305,7 @@ select {
   cursor: pointer;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 90px;
-  line-height: 1.6;
-}
+textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
 
 /* ========================
    INPUT WITH UNIT
@@ -493,6 +487,8 @@ textarea {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .canvas-title {
@@ -606,10 +602,7 @@ textarea {
 
 .save-modal-input:focus { border-color: var(--gold); }
 
-.save-modal-btns {
-  display: flex;
-  gap: 10px;
-}
+.save-modal-btns { display: flex; gap: 10px; }
 
 .save-modal-cancel {
   flex: 1;
@@ -752,13 +745,29 @@ textarea {
    CARD BODY
 ======================== */
 .card-body {
-  padding: 16px;
+  padding: 0;
   min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
+  overflow: hidden;
+}
+
+/* ========================
+   SVG DISPLAY
+======================== */
+.svg-display {
+  display: none;
+  width: 100%;
+  line-height: 0;
+}
+
+.svg-display svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ========================
@@ -772,7 +781,8 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 160px;
+  min-height: 200px;
+  padding: 20px;
 }
 
 .ph-icon { font-size: 30px; margin-bottom: 10px; opacity: 0.4; }
@@ -791,7 +801,7 @@ textarea {
   font-size: 11px;
   letter-spacing: 0.05em;
   width: 100%;
-  min-height: 160px;
+  min-height: 200px;
 }
 
 .loading.show { display: flex; }
@@ -818,19 +828,23 @@ textarea {
   white-space: pre-wrap;
   width: 100%;
   text-align: left;
-  padding: 4px 0;
+  padding: 16px;
   word-wrap: break-word;
 }
 
 /* ========================
    RESPONSIVE
 ======================== */
+@media (max-width: 900px) {
+  .output-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 768px) {
   .main { flex-direction: column; height: auto; }
   .panel { width: 100%; min-width: unset; border-right: none; border-bottom: 1px solid var(--border); }
-  .output-grid { grid-template-columns: 1fr; }
   .summary-grid { grid-template-columns: repeat(2,1fr); }
   .header { padding: 10px 16px; }
   .canvas { padding: 16px; }
   .user-info { display: none; }
+  .output-grid { grid-template-columns: 1fr; }
 }
