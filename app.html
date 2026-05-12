@@ -25,6 +25,194 @@
     </div>
   </div>
 
+  <!-- SETTINGS PANEL OVERLAY -->
+  <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-panel" id="settingsPanel">
+
+    <div class="settings-header">
+      <div class="settings-title">⚙️ Settings</div>
+      <button class="settings-close" onclick="closeSettings()">✕</button>
+    </div>
+
+    <div class="settings-body">
+
+      <!-- ACCOUNT SECTION -->
+      <div class="settings-section">
+        <div class="settings-section-title">👤 Account</div>
+
+        <div class="account-avatar-row">
+          <div class="account-avatar-big" id="settingsAvatar">--</div>
+          <div class="account-avatar-info">
+            <div class="account-avatar-name" id="settingsName">User</div>
+            <div class="account-avatar-email" id="settingsEmail">user@email.com</div>
+            <div class="account-plan-badge">Free Plan</div>
+          </div>
+        </div>
+
+        <div class="settings-field">
+          <label class="settings-label">Full Name</label>
+          <input type="text" class="settings-input" id="newName" placeholder="Enter new name" />
+        </div>
+
+        <div class="settings-field">
+          <label class="settings-label">Email Address</label>
+          <input type="email" class="settings-input" id="newEmail" placeholder="Enter new email" />
+        </div>
+
+        <div class="settings-field">
+          <label class="settings-label">New Password</label>
+          <input type="password" class="settings-input" id="newPassword" placeholder="Enter new password" />
+        </div>
+
+        <div class="settings-field">
+          <label class="settings-label">Confirm Password</label>
+          <input type="password" class="settings-input" id="confirmPassword" placeholder="Confirm new password" />
+        </div>
+
+        <button class="settings-btn-save" onclick="saveAccount()">
+          Save Account Changes
+        </button>
+
+        <div class="settings-msg" id="accountMsg"></div>
+      </div>
+
+      <!-- APPEARANCE SECTION -->
+      <div class="settings-section">
+        <div class="settings-section-title">🎨 Appearance</div>
+
+        <div class="settings-field">
+          <label class="settings-label">Theme</label>
+          <div class="theme-toggle-row">
+            <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">
+              🌙 Dark Mode
+            </button>
+            <button class="theme-btn" id="themeLight" onclick="setTheme('light')">
+              ☀️ Light Mode
+            </button>
+          </div>
+        </div>
+
+        <div class="settings-field">
+          <label class="settings-label">Accent Color</label>
+          <div class="color-picker-row">
+            <div class="color-dot active" style="background:#C9A84C" onclick="setAccent('#C9A84C','#B8860B')" title="Gold"></div>
+            <div class="color-dot" style="background:#4CAF50" onclick="setAccent('#4CAF50','#388E3C')" title="Green"></div>
+            <div class="color-dot" style="background:#2196F3" onclick="setAccent('#2196F3','#1565C0')" title="Blue"></div>
+            <div class="color-dot" style="background:#E91E63" onclick="setAccent('#E91E63','#C2185B')" title="Pink"></div>
+            <div class="color-dot" style="background:#9C27B0" onclick="setAccent('#9C27B0','#6A1B9A')" title="Purple"></div>
+            <div class="color-dot" style="background:#FF5722" onclick="setAccent('#FF5722','#E64A19')" title="Orange"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LANGUAGE SECTION -->
+      <div class="settings-section">
+        <div class="settings-section-title">🌍 Language</div>
+        <div class="language-grid">
+          <button class="lang-btn active" onclick="setLanguage('en')" id="lang-en">
+            🇬🇧 English
+          </button>
+          <button class="lang-btn" onclick="setLanguage('ha')" id="lang-ha">
+            🇳🇬 Hausa
+          </button>
+          <button class="lang-btn" onclick="setLanguage('yo')" id="lang-yo">
+            🇳🇬 Yoruba
+          </button>
+          <button class="lang-btn" onclick="setLanguage('ig')" id="lang-ig">
+            🇳🇬 Igbo
+          </button>
+          <button class="lang-btn" onclick="setLanguage('fr')" id="lang-fr">
+            🇫🇷 Français
+          </button>
+          <button class="lang-btn" onclick="setLanguage('ar')" id="lang-ar">
+            🇸🇦 العربية
+          </button>
+        </div>
+      </div>
+
+      <!-- SUBSCRIPTION SECTION -->
+      <div class="settings-section">
+        <div class="settings-section-title">💳 Subscription</div>
+        <div class="plan-card-current">
+          <div class="plan-card-top">
+            <div class="plan-name">Free Plan</div>
+            <div class="plan-price">₦0/month</div>
+          </div>
+          <div class="plan-features-list">
+            <div class="plan-feature">✓ 3 generations per day</div>
+            <div class="plan-feature">✓ All 4 output types</div>
+            <div class="plan-feature">✓ Night mode</div>
+          </div>
+          <button class="btn-upgrade" onclick="closeSettings(); window.location.href='index.html#pricing'">
+            ⚡ Upgrade to Pro — ₦2,500/month
+          </button>
+        </div>
+      </div>
+
+      <!-- COMING SOON SECTION -->
+      <div class="settings-section">
+        <div class="settings-section-title">🔮 Coming Soon</div>
+        <div class="coming-soon-list">
+          <div class="coming-soon-item">
+            <span class="coming-soon-icon">🔔</span>
+            <div>
+              <div class="coming-soon-name">Notifications</div>
+              <div class="coming-soon-desc">Get alerts when your designs are ready</div>
+            </div>
+            <span class="coming-soon-tag">Soon</span>
+          </div>
+          <div class="coming-soon-item">
+            <span class="coming-soon-icon">📤</span>
+            <div>
+              <div class="coming-soon-name">PDF Export</div>
+              <div class="coming-soon-desc">Download your designs as PDF files</div>
+            </div>
+            <span class="coming-soon-tag">Soon</span>
+          </div>
+          <div class="coming-soon-item">
+            <span class="coming-soon-icon">📐</span>
+            <div>
+              <div class="coming-soon-name">CAD Export</div>
+              <div class="coming-soon-desc">Export to AutoCAD format</div>
+            </div>
+            <span class="coming-soon-tag">Soon</span>
+          </div>
+          <div class="coming-soon-item">
+            <span class="coming-soon-icon">💰</span>
+            <div>
+              <div class="coming-soon-name">Cost Estimator</div>
+              <div class="coming-soon-desc">Get material and labour cost estimates</div>
+            </div>
+            <span class="coming-soon-tag">Soon</span>
+          </div>
+          <div class="coming-soon-item">
+            <span class="coming-soon-icon">🤝</span>
+            <div>
+              <div class="coming-soon-name">Team Collaboration</div>
+              <div class="coming-soon-desc">Share projects with your team</div>
+            </div>
+            <span class="coming-soon-tag">Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DANGER ZONE -->
+      <div class="settings-section">
+        <div class="settings-section-title">⚠️ Danger Zone</div>
+        <button class="btn-danger" onclick="deleteAccount()">
+          🗑️ Delete My Account
+        </button>
+        <button class="btn-signout-full" onclick="signOutFull()">
+          🚪 Sign Out
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- HEADER -->
   <header class="header">
     <div class="logo">
@@ -41,11 +229,9 @@
           <div class="user-name" id="userName">Loading...</div>
           <div class="user-email" id="userEmail">...</div>
         </div>
-        <button class="btn-logout" id="logoutBtn">Sign Out</button>
       </div>
-      <button class="night-toggle" id="nightToggle">
-        <span class="night-icon">🌙</span>
-        <span class="night-label">Night Mode</span>
+      <button class="btn-settings" id="settingsBtn" onclick="openSettings()">
+        ⚙️ Settings
       </button>
       <div class="badge">AI-Powered</div>
     </div>
@@ -58,17 +244,17 @@
     <aside class="panel">
 
       <div class="section">
-        <div class="section-title">Plot Configuration</div>
+        <div class="section-title" data-lang="plotConfig">Plot Configuration</div>
         <div class="row">
           <div class="field">
-            <label>Plot Width</label>
+            <label data-lang="plotWidth">Plot Width</label>
             <div class="input-unit">
               <input type="number" id="plotW" value="50" min="10" />
               <span class="unit">ft</span>
             </div>
           </div>
           <div class="field">
-            <label>Plot Length</label>
+            <label data-lang="plotLength">Plot Length</label>
             <div class="input-unit">
               <input type="number" id="plotL" value="100" min="10" />
               <span class="unit">ft</span>
@@ -78,39 +264,39 @@
       </div>
 
       <div class="section">
-        <div class="section-title">Building Type</div>
+        <div class="section-title" data-lang="buildingType">Building Type</div>
         <div class="toggle-group" id="buildingType">
-          <button class="toggle active" data-val="Bungalow">Bungalow</button>
-          <button class="toggle" data-val="Duplex">Duplex</button>
-          <button class="toggle" data-val="Terrace">Terrace</button>
+          <button class="toggle active" data-val="Bungalow" data-lang="bungalow">Bungalow</button>
+          <button class="toggle" data-val="Duplex" data-lang="duplex">Duplex</button>
+          <button class="toggle" data-val="Terrace" data-lang="terrace">Terrace</button>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Architectural Style</div>
+        <div class="section-title" data-lang="archStyle">Architectural Style</div>
         <div class="toggle-group" id="archStyle">
-          <button class="toggle active" data-val="Modern Nigerian">Modern Nigerian</button>
-          <button class="toggle" data-val="Contemporary">Contemporary</button>
-          <button class="toggle" data-val="Colonial">Colonial</button>
-          <button class="toggle" data-val="Minimalist">Minimalist</button>
+          <button class="toggle active" data-val="Modern Nigerian" data-lang="modernNigerian">Modern Nigerian</button>
+          <button class="toggle" data-val="Contemporary" data-lang="contemporary">Contemporary</button>
+          <button class="toggle" data-val="Colonial" data-lang="colonial">Colonial</button>
+          <button class="toggle" data-val="Minimalist" data-lang="minimalist">Minimalist</button>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Roof Style</div>
+        <div class="section-title" data-lang="roofStyle">Roof Style</div>
         <div class="toggle-group" id="roofStyle">
-          <button class="toggle active" data-val="Hip Roof">Hip Roof</button>
-          <button class="toggle" data-val="Flat Roof">Flat Roof</button>
-          <button class="toggle" data-val="Gable Roof">Gable Roof</button>
-          <button class="toggle" data-val="Mansard">Mansard</button>
+          <button class="toggle active" data-val="Hip Roof" data-lang="hipRoof">Hip Roof</button>
+          <button class="toggle" data-val="Flat Roof" data-lang="flatRoof">Flat Roof</button>
+          <button class="toggle" data-val="Gable Roof" data-lang="gableRoof">Gable Roof</button>
+          <button class="toggle" data-val="Mansard" data-lang="mansard">Mansard</button>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Rooms & Layout</div>
+        <div class="section-title" data-lang="roomsLayout">Rooms & Layout</div>
         <div class="row">
           <div class="field">
-            <label>Bedrooms</label>
+            <label data-lang="bedrooms">Bedrooms</label>
             <select id="bedrooms">
               <option value="2">2 Bedrooms</option>
               <option value="3" selected>3 Bedrooms</option>
@@ -119,7 +305,7 @@
             </select>
           </div>
           <div class="field">
-            <label>Bathrooms</label>
+            <label data-lang="bathrooms">Bathrooms</label>
             <select id="bathrooms">
               <option value="1">1 Bathroom</option>
               <option value="2" selected>2 Bathrooms</option>
@@ -128,19 +314,19 @@
           </div>
         </div>
         <div class="toggle-group multi" id="extras">
-          <button class="toggle active" data-val="Living Room">Living Room</button>
-          <button class="toggle active" data-val="Dining">Dining</button>
-          <button class="toggle active" data-val="Kitchen">Kitchen</button>
-          <button class="toggle" data-val="Store">Store</button>
-          <button class="toggle" data-val="Study">Study</button>
-          <button class="toggle" data-val="Garage">Garage</button>
+          <button class="toggle active" data-val="Living Room" data-lang="livingRoom">Living Room</button>
+          <button class="toggle active" data-val="Dining" data-lang="dining">Dining</button>
+          <button class="toggle active" data-val="Kitchen" data-lang="kitchen">Kitchen</button>
+          <button class="toggle" data-val="Store" data-lang="store">Store</button>
+          <button class="toggle" data-val="Study" data-lang="study">Study</button>
+          <button class="toggle" data-val="Garage" data-lang="garage">Garage</button>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Site Conditions</div>
+        <div class="section-title" data-lang="siteConditions">Site Conditions</div>
         <div class="field" style="margin-bottom:12px">
-          <label>Soil Type</label>
+          <label data-lang="soilType">Soil Type</label>
           <select id="soil">
             <option value="Firm Clay">Firm Clay</option>
             <option value="Sandy Loam" selected>Sandy Loam</option>
@@ -149,7 +335,7 @@
           </select>
         </div>
         <div class="field">
-          <label>Zoning / Setback</label>
+          <label data-lang="zoning">Zoning / Setback</label>
           <select id="zoning">
             <option value="3m setback">3m setback (standard)</option>
             <option value="5m setback">5m setback (commercial zone)</option>
@@ -159,36 +345,34 @@
       </div>
 
       <div class="section">
-        <div class="section-title">Consistency Seed</div>
+        <div class="section-title" data-lang="consistencySeed">Consistency Seed</div>
         <div class="field">
-          <label>Generation Seed</label>
+          <label data-lang="generationSeed">Generation Seed</label>
           <div class="seed-row">
             <input type="number" id="seed" value="12345" />
-            <button class="btn-random" id="randomBtn">Randomize</button>
+            <button class="btn-random" id="randomBtn" data-lang="randomize">Randomize</button>
           </div>
         </div>
-        <div class="seed-info">
+        <div class="seed-info" data-lang="seedInfo">
           🔒 Fixed seed keeps all 4 outputs showing the same building
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Specific Requirements</div>
-        <textarea
-          id="requirements"
-          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior..."
-        ></textarea>
+        <div class="section-title" data-lang="specificReqs">Specific Requirements</div>
+        <textarea id="requirements" data-lang-placeholder="requirementsPlaceholder"
+          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior...">
+        </textarea>
       </div>
 
-      <button class="btn-generate" id="generateBtn">
+      <button class="btn-generate" id="generateBtn" data-lang="generateBtn">
         Generate Blueprints
       </button>
 
-      <!-- SAVED PROJECTS PANEL -->
       <div class="section" style="margin-top:20px">
-        <div class="section-title">Saved Projects</div>
+        <div class="section-title" data-lang="savedProjects">Saved Projects</div>
         <div class="projects-list" id="projectsList">
-          <div class="no-projects">No saved projects yet.<br/>Generate and save your first design!</div>
+          <div class="no-projects" data-lang="noProjects">No saved projects yet.<br/>Generate and save your first design!</div>
         </div>
       </div>
 
@@ -198,14 +382,14 @@
     <main class="canvas">
 
       <div class="canvas-header">
-        <h2 class="canvas-title">Design Output</h2>
+        <h2 class="canvas-title" data-lang="designOutput">Design Output</h2>
         <div class="canvas-actions">
-          <button class="btn-save" id="saveBtn" style="display:none">
+          <button class="btn-save" id="saveBtn" style="display:none" data-lang="saveProject">
             💾 Save Project
           </button>
           <div class="status-row">
             <div class="status-dot" id="statusDot"></div>
-            <span class="status-text" id="statusText">Ready to generate</span>
+            <span class="status-text" id="statusText" data-lang="readyToGenerate">Ready to generate</span>
           </div>
         </div>
       </div>
@@ -215,12 +399,8 @@
         <div class="save-modal-box">
           <div class="save-modal-title">💾 Save This Project</div>
           <div class="save-modal-sub">Give your design a name to save it</div>
-          <input
-            type="text"
-            class="save-modal-input"
-            id="projectNameInput"
-            placeholder="e.g. Lagos 3-Bedroom Bungalow"
-          />
+          <input type="text" class="save-modal-input" id="projectNameInput"
+            placeholder="e.g. Lagos 3-Bedroom Bungalow" />
           <div class="save-modal-btns">
             <button class="save-modal-cancel" id="cancelSave">Cancel</button>
             <button class="save-modal-confirm" id="confirmSave">Save Project</button>
@@ -239,16 +419,16 @@
 
         <div class="output-card">
           <div class="card-header">
-            <span class="card-type">3D Isometric View</span>
+            <span class="card-type" data-lang="view3D">3D Isometric View</span>
           </div>
           <div class="card-body">
             <div class="loading" id="load0">
               <div class="spinner"></div>
-              <span>Generating exterior...</span>
+              <span data-lang="generatingExterior">Generating exterior...</span>
             </div>
             <div class="placeholder" id="ph0">
               <div class="ph-icon">🏗️</div>
-              <div class="ph-text">3D view will appear here</div>
+              <div class="ph-text" data-lang="ph3D">3D view will appear here</div>
             </div>
             <div class="svg-display" id="svg0"></div>
             <div class="result-text" id="res0"></div>
@@ -257,16 +437,16 @@
 
         <div class="output-card">
           <div class="card-header">
-            <span class="card-type">Front Facade</span>
+            <span class="card-type" data-lang="frontFacade">Front Facade</span>
           </div>
           <div class="card-body">
             <div class="loading" id="load1">
               <div class="spinner"></div>
-              <span>Rendering facade...</span>
+              <span data-lang="renderingFacade">Rendering facade...</span>
             </div>
             <div class="placeholder" id="ph1">
               <div class="ph-icon">🏠</div>
-              <div class="ph-text">Front elevation will appear here</div>
+              <div class="ph-text" data-lang="phFacade">Front elevation will appear here</div>
             </div>
             <div class="svg-display" id="svg1"></div>
             <div class="result-text" id="res1"></div>
@@ -275,16 +455,16 @@
 
         <div class="output-card">
           <div class="card-header">
-            <span class="card-type">Floor Plan Layout</span>
+            <span class="card-type" data-lang="floorPlan">Floor Plan Layout</span>
           </div>
           <div class="card-body">
             <div class="loading" id="load2">
               <div class="spinner"></div>
-              <span>Drawing floor plan...</span>
+              <span data-lang="drawingFloorPlan">Drawing floor plan...</span>
             </div>
             <div class="placeholder" id="ph2">
               <div class="ph-icon">📐</div>
-              <div class="ph-text">Floor plan will appear here</div>
+              <div class="ph-text" data-lang="phFloorPlan">Floor plan will appear here</div>
             </div>
             <div class="svg-display" id="svg2"></div>
             <div class="result-text" id="res2"></div>
@@ -293,16 +473,16 @@
 
         <div class="output-card">
           <div class="card-header">
-            <span class="card-type">Interior Cutaway View</span>
+            <span class="card-type" data-lang="interiorView">Interior Cutaway View</span>
           </div>
           <div class="card-body">
             <div class="loading" id="load3">
               <div class="spinner"></div>
-              <span>Visualizing interior...</span>
+              <span data-lang="visualizingInterior">Visualizing interior...</span>
             </div>
             <div class="placeholder" id="ph3">
               <div class="ph-icon">🛋️</div>
-              <div class="ph-text">Dollhouse interior will appear here</div>
+              <div class="ph-text" data-lang="phInterior">Dollhouse interior will appear here</div>
             </div>
             <div class="svg-display" id="svg3"></div>
             <div class="result-text" id="res3"></div>
@@ -313,16 +493,16 @@
 
       <div class="output-card specs-card" id="specsCard">
         <div class="card-header">
-          <span class="card-type">Technical Specifications & Materials</span>
+          <span class="card-type" data-lang="techSpecs">Technical Specifications & Materials</span>
         </div>
         <div class="card-body">
           <div class="loading" id="load4">
             <div class="spinner"></div>
-            <span>Compiling specifications...</span>
+            <span data-lang="compilingSpecs">Compiling specifications...</span>
           </div>
           <div class="placeholder" id="ph4">
             <div class="ph-icon">📋</div>
-            <div class="ph-text">Technical specs will appear here</div>
+            <div class="ph-text" data-lang="phSpecs">Technical specs will appear here</div>
           </div>
           <div class="result-text" id="res4"></div>
         </div>
