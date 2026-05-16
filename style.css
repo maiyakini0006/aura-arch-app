@@ -1025,4 +1025,94 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   .canvas { padding: 16px; }
   .user-info { display: none; }
   .output-grid { grid-template-columns: 1fr; }
+}/* ========================
+   UPGRADE MODAL
+======================== */
+.upgrade-modal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.8); z-index: 2000;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(6px);
+}
+.upgrade-modal.show { display: flex; }
+
+.upgrade-modal-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--accent);
+  border-radius: 16px; padding: 36px;
+  width: 100%; max-width: 400px;
+  margin: 20px; text-align: center;
+}
+
+.upgrade-modal-icon {
+  font-size: 48px; margin-bottom: 12px;
+}
+
+.upgrade-modal-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 22px;
+  color: var(--text-main); margin-bottom: 8px;
+}
+
+.upgrade-modal-sub {
+  font-size: 13px; color: var(--text-muted);
+  margin-bottom: 20px; line-height: 1.6;
+}
+
+.upgrade-features {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px;
+  margin-bottom: 20px; text-align: left;
+}
+
+.upgrade-feature {
+  font-size: 13px; color: var(--text-muted);
+  padding: 5px 0;
+}
+
+.upgrade-feature::first-letter { color: var(--accent); }
+
+.upgrade-price {
+  font-family: 'DM Mono', monospace;
+  font-size: 32px; font-weight: 500;
+  color: var(--accent); margin-bottom: 16px;
+}
+
+.upgrade-price span {
+  font-size: 14px; color: var(--text-muted);
+}
+
+.upgrade-btn-pay {
+  display: block; width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+  border: none; color: #0F0E0C;
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 0.08em;
+  text-transform: uppercase; border-radius: 8px;
+  cursor: pointer; text-decoration: none;
+  transition: opacity 0.2s; margin-bottom: 10px;
+}
+
+.upgrade-btn-pay:hover { opacity: 0.88; }
+
+.upgrade-btn-close {
+  width: 100%; padding: 11px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px; border-radius: 8px;
+  cursor: pointer; transition: all 0.2s;
+}
+
+.upgrade-btn-close:hover { border-color: var(--text-muted); }
+
+/* ========================
+   PLAN BADGE
+======================== */
+.plan-badge-header {
+  font-size: 10px; padding: 3px 8px;
+  border-radius: 10px; font-weight: 600;
+  letter-spacing: 0.05em;
 }
