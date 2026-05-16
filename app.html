@@ -7,7 +7,32 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body><!-- UPGRADE MODAL -->
+<div class="upgrade-modal" id="upgradeModal">
+  <div class="upgrade-modal-box">
+    <div class="upgrade-modal-icon">⚡</div>
+    <div class="upgrade-modal-title" id="upgradeTitle">Upgrade to Pro</div>
+    <div class="upgrade-modal-sub" id="upgradeSubtitle">Get unlimited access to all features</div>
+    <div class="upgrade-features">
+      <div class="upgrade-feature">✓ Unlimited generations every day</div>
+      <div class="upgrade-feature">✓ Save unlimited projects</div>
+      <div class="upgrade-feature">✓ Full technical specifications</div>
+      <div class="upgrade-feature">✓ All 6 languages</div>
+      <div class="upgrade-feature">✓ Advanced settings & colors</div>
+      <div class="upgrade-feature">✓ Remove watermarks</div>
+    </div>
+    <div class="upgrade-price">₦2,500 <span>/month</span></div>
+    <a href="index.html#pricing" class="upgrade-btn-pay">⚡ Upgrade Now</a>
+    <button class="upgrade-btn-close" onclick="closeUpgradeModal()">Maybe Later</button>
+  </div>
+</div>
+
+<!-- GENERATION COUNTER -->
+<div id="genCounter" style="
+  text-align:center;font-size:11px;
+  color:#8A8880;padding:6px 0;
+  margin-top:6px;
+"></div>
 
   <!-- LOGIN CHECK SCREEN -->
   <div id="authCheck" style="
