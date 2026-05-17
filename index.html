@@ -1,3 +1,4 @@
+<script src="https://js.paystack.co/v1/inline.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -689,108 +690,137 @@
     <div class="footer-tagline">ONE DESIGN. ONE VISION. ZERO INCONSISTENCY.</div>
   </footer>
 
-  <script>
-    // ========================
-    // PAYSTACK INTEGRATION
-    // ========================
+ <script>
+  // ========================
+  // PAYSTACK PAYMENT
+  // ========================
 
-    const PAYSTACK_KEY = 'pk_test_f074a3cedc28b97c22493e95544ed014f6405a4f';
+  const PAYSTACK_KEY = 'pk_test_f074a3cedc28b97c22493e95544ed014f6405a4f';
 
-    let currentPlan   = '';
-    let currentAmount = 0;
-    let currentPlanId = '';
+  let currentPlan   = '';
+  let currentAmount = 0;
+  let currentPlanId = '';
 
-    function openPayment(planName, amount, planId) {
-      currentPlan   = planName;
-      currentAmount = amount;
-      currentPlanId = planId;
+  function openPayment(planName, amount, planId) {
+    currentPlan   = planName;
+    currentAmount = amount;
+    currentPlanId = planId;
 
-      document.getElementById('modalPlanName').textContent  = planName;
-      document.getElementById('modalPlanPrice').textContent =
-        planId === 'pro' ? '₦2,500/mo' : '₦8,000/mo';
+    document.getElementById('modalPlanName').textContent  = planName;
+    document.getElementById('modalPlanPrice').textContent =
+      planId === 'pro' ? '₦2,500/mo' : '₦8,000/mo';
 
-      // Pre-fill email if user is logged in
-      const session = localStorage.getItem('archgen_session');
-      if (session) {
+    // Pre-fill email if logged in
+    const session = localStorage.getItem('archgen_session');
+    if (session) {
+      try {
         const user = JSON.parse(session);
-        document.getElementById('payerEmail').value = user.email || '';
-      }
-
-      document.getElementById('emailModal').classList.add('show');
+        if (user.email) document.getElementById('payerEmail').value = user.email;
+      } catch(e) {}
     }
 
-    function closeEmailModal() {
-      document.getElementById('emailModal').classList.remove('show');
-      document.getElementById('payerEmail').value = '';
+    document.getElementById('emailModal').classList.add('show');
+    document.getElementById('payerEmail').focus();
+  }
+
+  function closeEmailModal() {
+    document.getElementById('emailModal').classList.remove('show');
+    document.getElementById('payerEmail').value = '';
+  }
+
+  function processPayment() {
+    const email = document.getElementById('payerEmail').value.trim();
+
+    if (!email || !email.includes('@')) {
+      document.getElementById('payerEmail').style.borderColor = '#E24B4A';
+      setTimeout(() => {
+        document.getElementById('payerEmail').style.borderColor = '';
+      }, 2000);
+      return;
     }
 
-    function processPayment() {
-      const email = document.getElementById('payerEmail').value.trim();
+    closeEmailModal();
 
-      if (!email || !email.includes('@')) {
-        document.getElementById('payerEmail').style.borderColor = '#E24B4A';
-        setTimeout(() => {
-          document.getElementById('payerEmail').style.borderColor = '';
-        }, 2000);
-        return;
-      }
-
-      closeEmailModal();
-
+    try {
       const handler = PaystackPop.setup({
-        key: PAYSTACK_KEY,
-        email: email,
-        amount: currentAmount,
+        key:      PAYSTACK_KEY,
+        email:    email,
+        amount:   currentAmount,
         currency: 'NGN',
-        ref: 'ARCHGEN_' + Math.floor(Math.random() * 1000000000 + 1),
+        ref:      'ARCHGEN_' + Date.now() + '_' + Math.floor(Math.random() * 1000000),
         metadata: {
           custom_fields: [
-            { display_name: 'Plan', variable_name: 'plan', value: currentPlan },
-            { display_name: 'App', variable_name: 'app', value: 'MY ArchGen' }
+            { display_name: 'Plan',  variable_name: 'plan',  value: currentPlan },
+            { display_name: 'App',   variable_name: 'app',   value: 'MY ArchGen' }
           ]
         },
         callback: function(response) {
-          // Payment successful
           paymentSuccess(email, response.reference);
         },
         onClose: function() {
-          // User closed payment modal
-          console.log('Payment cancelled');
+          console.log('Payment window closed');
         }
       });
 
       handler.openIframe();
-    }
 
-    function paymentSuccess(email, reference) {
-  // Save to session
-  const session = localStorage.getItem('archgen_session');
-  if (session) {
-    const user    = JSON.parse(session);
-    user.plan     = currentPlanId;
-    user.planName = currentPlan;
-    user.paidAt   = new Date().toISOString();
-    user.payRef   = reference;
-    localStorage.setItem('archgen_session', JSON.stringify(user));
+    } catch(err) {
+      alert('Payment error: ' + err.message + '\n\nPlease make sure you are connected to the internet.');
+    }
   }
 
-  // Also save to users list so it persists after logout
-  const users = JSON.parse(localStorage.getItem('archgen_users') || '[]');
-  const idx   = users.findIndex(u => u.email === email);
-  if (idx !== -1) {
-    users[idx].plan     = currentPlanId;
-    users[idx].planName = currentPlan;
-    users[idx].paidAt   = new Date().toISOString();
-    users[idx].payRef   = reference;
-    localStorage.setItem('archgen_users', JSON.stringify(users));
+  function paymentSuccess(email, reference) {
+    // Update session if logged in
+    const session = localStorage.getItem('archgen_session');
+    if (session) {
+      try {
+        const user    = JSON.parse(session);
+        user.plan     = currentPlanId;
+        user.planName = currentPlan;
+        user.paidAt   = new Date().toISOString();
+        user.payRef   = reference;
+        localStorage.setItem('archgen_session', JSON.stringify(user));
+      } catch(e) {}
+    }
+
+    // Update users list so plan persists after logout
+    try {
+      const users = JSON.parse(localStorage.getItem('archgen_users') || '[]');
+      const idx   = users.findIndex(u => u.email === email);
+      if (idx !== -1) {
+        users[idx].plan     = currentPlanId;
+        users[idx].planName = currentPlan;
+        users[idx].paidAt   = new Date().toISOString();
+        users[idx].payRef   = reference;
+        localStorage.setItem('archgen_users', JSON.stringify(users));
+      }
+    } catch(e) {}
+
+    // Show success
+    document.getElementById('successMsg').textContent =
+      'Welcome to MY ArchGen ' + currentPlan + '! ' +
+      'Your account is now upgraded. ' +
+      'Payment Ref: ' + reference;
+    document.getElementById('successModal').classList.add('show');
   }
 
-  document.getElementById('successMsg').textContent =
-    'Welcome to MY ArchGen ' + currentPlan + '! Reference: ' + reference;
-  document.getElementById('successModal').classList.add('show');
-}
+  // Close success modal when clicking button
+  document.addEventListener('DOMContentLoaded', function() {
+    const closeBtn = document.querySelector('.pay-modal-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        window.location.href = 'app.html';
+      });
     }
-  </script>
+  });
 
-</body>
-</html>
+  // Allow pressing Enter on email input
+  document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.getElementById('payerEmail');
+    if (emailInput) {
+      emailInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') processPayment();
+      });
+    }
+  });
+</script>
