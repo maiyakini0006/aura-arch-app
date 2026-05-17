@@ -750,24 +750,27 @@
     // LOGIN SUCCESS
     // ========================
     function loginSuccess(user) {
-      // Save current user session
-      const session = {
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        provider: user.provider,
-        loggedIn: true,
-        loginTime: new Date().toISOString()
-      };
+  // Load saved plan from users list
+  const users    = getUsers();
+  const fullUser = users.find(u => u.email === user.email) || user;
 
-      localStorage.setItem('archgen_session', JSON.stringify(session));
+  const session = {
+    name:      fullUser.name     || user.name,
+    email:     fullUser.email    || user.email,
+    avatar:    fullUser.avatar   || user.avatar,
+    provider:  fullUser.provider || user.provider,
+    plan:      fullUser.plan     || 'free',
+    planName:  fullUser.planName || 'Free',
+    paidAt:    fullUser.paidAt   || null,
+    payRef:    fullUser.payRef   || null,
+    loggedIn:  true,
+    loginTime: new Date().toISOString()
+  };
 
-      showSuccess('Welcome back ' + user.name + '! Taking you to the app...');
-
-      // Redirect to app after 1.5 seconds
-      setTimeout(() => {
-        window.location.href = 'app.html';
-      }, 1500);
+  localStorage.setItem('archgen_session', JSON.stringify(session));
+  showSuccess('Welcome back ' + session.name + '! Taking you to the app...');
+  setTimeout(() => { window.location.href = 'app.html'; }, 1500);
+}
     }
 
     // ========================
