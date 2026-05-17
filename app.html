@@ -7,236 +7,213 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
-<body><!-- UPGRADE MODAL -->
-<div class="upgrade-modal" id="upgradeModal">
-  <div class="upgrade-modal-box">
-    <div class="upgrade-modal-icon">⚡</div>
-    <div class="upgrade-modal-title" id="upgradeTitle">Upgrade to Pro</div>
-    <div class="upgrade-modal-sub" id="upgradeSubtitle">Get unlimited access to all features</div>
-    <div class="upgrade-features">
-      <div class="upgrade-feature">✓ Unlimited generations every day</div>
-      <div class="upgrade-feature">✓ Save unlimited projects</div>
-      <div class="upgrade-feature">✓ Full technical specifications</div>
-      <div class="upgrade-feature">✓ All 6 languages</div>
-      <div class="upgrade-feature">✓ Advanced settings & colors</div>
-      <div class="upgrade-feature">✓ Remove watermarks</div>
-    </div>
-    <div class="upgrade-price">₦2,500 <span>/month</span></div>
-    <a href="index.html#pricing" class="upgrade-btn-pay">⚡ Upgrade Now</a>
-    <button class="upgrade-btn-close" onclick="closeUpgradeModal()">Maybe Later</button>
-  </div>
-</div>
+<body>
 
-<!-- GENERATION COUNTER -->
-<div id="genCounter" style="
-  text-align:center;font-size:11px;
-  color:#8A8880;padding:6px 0;
-  margin-top:6px;
-"></div>
-
-  <!-- LOGIN CHECK SCREEN -->
+  <!-- LOGIN CHECK -->
   <div id="authCheck" style="
     position:fixed;inset:0;background:#0F0E0C;
     display:flex;align-items:center;justify-content:center;
-    z-index:9999;flex-direction:column;gap:16px;
-  ">
-    <div style="
-      width:48px;height:48px;border:2px solid #333230;
+    z-index:9999;flex-direction:column;gap:16px;">
+    <div style="width:48px;height:48px;border:2px solid #333230;
       border-top-color:#C9A84C;border-radius:50%;
-      animation:spin 0.8s linear infinite;
-    "></div>
+      animation:spin 0.8s linear infinite;"></div>
     <div style="font-family:'Syne',sans-serif;font-size:13px;color:#8A8880;">
       Checking your session...
     </div>
   </div>
 
-  <!-- SETTINGS PANEL OVERLAY -->
+  <!-- UPGRADE MODAL -->
+  <div class="upgrade-modal" id="upgradeModal">
+    <div class="upgrade-modal-box">
+      <div class="upgrade-modal-icon">⚡</div>
+      <div class="upgrade-modal-title" id="upgradeTitle">Upgrade to Pro</div>
+      <div class="upgrade-modal-sub" id="upgradeSubtitle">Get unlimited access to all features</div>
+      <div class="upgrade-features">
+        <div class="upgrade-feature">✓ Unlimited generations every day</div>
+        <div class="upgrade-feature">✓ Save unlimited projects</div>
+        <div class="upgrade-feature">✓ Full technical specifications</div>
+        <div class="upgrade-feature">✓ All 6 languages</div>
+        <div class="upgrade-feature">✓ Advanced settings & colors</div>
+        <div class="upgrade-feature">✓ Remove watermarks</div>
+        <div class="upgrade-feature">✓ AI Chat Assistant + Voice</div>
+      </div>
+      <div class="upgrade-price">₦2,500 <span>/month</span></div>
+      <a href="index.html#pricing" class="upgrade-btn-pay">⚡ Upgrade Now</a>
+      <button class="upgrade-btn-close" onclick="closeUpgradeModal()">Maybe Later</button>
+    </div>
+  </div>
+
+  <!-- SETTINGS OVERLAY -->
   <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
 
   <!-- SETTINGS PANEL -->
   <div class="settings-panel" id="settingsPanel">
-
     <div class="settings-header">
       <div class="settings-title">⚙️ Settings</div>
       <button class="settings-close" onclick="closeSettings()">✕</button>
     </div>
-
     <div class="settings-body">
 
-      <!-- ACCOUNT SECTION -->
       <div class="settings-section">
         <div class="settings-section-title">👤 Account</div>
-
         <div class="account-avatar-row">
           <div class="account-avatar-big" id="settingsAvatar">--</div>
           <div class="account-avatar-info">
             <div class="account-avatar-name" id="settingsName">User</div>
             <div class="account-avatar-email" id="settingsEmail">user@email.com</div>
-            <div class="account-plan-badge">Free Plan</div>
+            <div class="account-plan-badge" id="planBadge">Free Plan</div>
           </div>
         </div>
-
         <div class="settings-field">
           <label class="settings-label">Full Name</label>
           <input type="text" class="settings-input" id="newName" placeholder="Enter new name" />
         </div>
-
         <div class="settings-field">
           <label class="settings-label">Email Address</label>
           <input type="email" class="settings-input" id="newEmail" placeholder="Enter new email" />
         </div>
-
         <div class="settings-field">
           <label class="settings-label">New Password</label>
           <input type="password" class="settings-input" id="newPassword" placeholder="Enter new password" />
         </div>
-
         <div class="settings-field">
           <label class="settings-label">Confirm Password</label>
           <input type="password" class="settings-input" id="confirmPassword" placeholder="Confirm new password" />
         </div>
-
-        <button class="settings-btn-save" onclick="saveAccount()">
-          Save Account Changes
-        </button>
-
+        <button class="settings-btn-save" onclick="saveAccount()">Save Account Changes</button>
         <div class="settings-msg" id="accountMsg"></div>
       </div>
 
-      <!-- APPEARANCE SECTION -->
       <div class="settings-section">
         <div class="settings-section-title">🎨 Appearance</div>
-
         <div class="settings-field">
           <label class="settings-label">Theme</label>
           <div class="theme-toggle-row">
-            <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">
-              🌙 Dark Mode
-            </button>
-            <button class="theme-btn" id="themeLight" onclick="setTheme('light')">
-              ☀️ Light Mode
-            </button>
+            <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">🌙 Dark Mode</button>
+            <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀️ Light Mode</button>
           </div>
         </div>
-
         <div class="settings-field">
           <label class="settings-label">Accent Color</label>
           <div class="color-picker-row">
-            <div class="color-dot active" style="background:#C9A84C" onclick="setAccent('#C9A84C','#B8860B')" title="Gold"></div>
-            <div class="color-dot" style="background:#4CAF50" onclick="setAccent('#4CAF50','#388E3C')" title="Green"></div>
-            <div class="color-dot" style="background:#2196F3" onclick="setAccent('#2196F3','#1565C0')" title="Blue"></div>
-            <div class="color-dot" style="background:#E91E63" onclick="setAccent('#E91E63','#C2185B')" title="Pink"></div>
-            <div class="color-dot" style="background:#9C27B0" onclick="setAccent('#9C27B0','#6A1B9A')" title="Purple"></div>
-            <div class="color-dot" style="background:#FF5722" onclick="setAccent('#FF5722','#E64A19')" title="Orange"></div>
+            <div class="color-dot active" style="background:#C9A84C" onclick="setAccent('#C9A84C','#B8860B')"></div>
+            <div class="color-dot" style="background:#4CAF50" onclick="setAccent('#4CAF50','#388E3C')"></div>
+            <div class="color-dot" style="background:#2196F3" onclick="setAccent('#2196F3','#1565C0')"></div>
+            <div class="color-dot" style="background:#E91E63" onclick="setAccent('#E91E63','#C2185B')"></div>
+            <div class="color-dot" style="background:#9C27B0" onclick="setAccent('#9C27B0','#6A1B9A')"></div>
+            <div class="color-dot" style="background:#FF5722" onclick="setAccent('#FF5722','#E64A19')"></div>
           </div>
         </div>
-
       </div>
 
-      <!-- LANGUAGE SECTION -->
       <div class="settings-section">
         <div class="settings-section-title">🌍 Language</div>
         <div class="language-grid">
-          <button class="lang-btn active" onclick="setLanguage('en')" id="lang-en">
-            🇬🇧 English
-          </button>
-          <button class="lang-btn" onclick="setLanguage('ha')" id="lang-ha">
-            🇳🇬 Hausa
-          </button>
-          <button class="lang-btn" onclick="setLanguage('yo')" id="lang-yo">
-            🇳🇬 Yoruba
-          </button>
-          <button class="lang-btn" onclick="setLanguage('ig')" id="lang-ig">
-            🇳🇬 Igbo
-          </button>
-          <button class="lang-btn" onclick="setLanguage('fr')" id="lang-fr">
-            🇫🇷 Français
-          </button>
-          <button class="lang-btn" onclick="setLanguage('ar')" id="lang-ar">
-            🇸🇦 العربية
-          </button>
+          <button class="lang-btn active" onclick="setLanguage('en')" id="lang-en">🇬🇧 English</button>
+          <button class="lang-btn" onclick="setLanguage('ha')" id="lang-ha">🇳🇬 Hausa</button>
+          <button class="lang-btn" onclick="setLanguage('yo')" id="lang-yo">🇳🇬 Yoruba</button>
+          <button class="lang-btn" onclick="setLanguage('ig')" id="lang-ig">🇳🇬 Igbo</button>
+          <button class="lang-btn" onclick="setLanguage('fr')" id="lang-fr">🇫🇷 Français</button>
+          <button class="lang-btn" onclick="setLanguage('ar')" id="lang-ar">🇸🇦 العربية</button>
         </div>
       </div>
 
-      <!-- SUBSCRIPTION SECTION -->
       <div class="settings-section">
         <div class="settings-section-title">💳 Subscription</div>
         <div class="plan-card-current">
           <div class="plan-card-top">
-            <div class="plan-name">Free Plan</div>
-            <div class="plan-price">₦0/month</div>
+            <div class="plan-name" id="currentPlanName">Free Plan</div>
+            <div class="plan-price" id="currentPlanPrice">₦0/month</div>
           </div>
           <div class="plan-features-list">
             <div class="plan-feature">✓ 3 generations per day</div>
             <div class="plan-feature">✓ All 4 output types</div>
             <div class="plan-feature">✓ Night mode</div>
           </div>
-          <button class="btn-upgrade" onclick="closeSettings(); window.location.href='index.html#pricing'">
+          <button class="btn-upgrade" onclick="closeSettings();window.location.href='index.html#pricing'">
             ⚡ Upgrade to Pro — ₦2,500/month
           </button>
         </div>
       </div>
 
-      <!-- COMING SOON SECTION -->
       <div class="settings-section">
         <div class="settings-section-title">🔮 Coming Soon</div>
         <div class="coming-soon-list">
-          <div class="coming-soon-item">
-            <span class="coming-soon-icon">🔔</span>
-            <div>
-              <div class="coming-soon-name">Notifications</div>
-              <div class="coming-soon-desc">Get alerts when your designs are ready</div>
-            </div>
-            <span class="coming-soon-tag">Soon</span>
-          </div>
-          <div class="coming-soon-item">
-            <span class="coming-soon-icon">📤</span>
-            <div>
-              <div class="coming-soon-name">PDF Export</div>
-              <div class="coming-soon-desc">Download your designs as PDF files</div>
-            </div>
-            <span class="coming-soon-tag">Soon</span>
-          </div>
-          <div class="coming-soon-item">
-            <span class="coming-soon-icon">📐</span>
-            <div>
-              <div class="coming-soon-name">CAD Export</div>
-              <div class="coming-soon-desc">Export to AutoCAD format</div>
-            </div>
-            <span class="coming-soon-tag">Soon</span>
-          </div>
-          <div class="coming-soon-item">
-            <span class="coming-soon-icon">💰</span>
-            <div>
-              <div class="coming-soon-name">Cost Estimator</div>
-              <div class="coming-soon-desc">Get material and labour cost estimates</div>
-            </div>
-            <span class="coming-soon-tag">Soon</span>
-          </div>
-          <div class="coming-soon-item">
-            <span class="coming-soon-icon">🤝</span>
-            <div>
-              <div class="coming-soon-name">Team Collaboration</div>
-              <div class="coming-soon-desc">Share projects with your team</div>
-            </div>
-            <span class="coming-soon-tag">Soon</span>
-          </div>
+          <div class="coming-soon-item"><span class="coming-soon-icon">🔔</span><div><div class="coming-soon-name">Notifications</div><div class="coming-soon-desc">Get alerts when designs are ready</div></div><span class="coming-soon-tag">Soon</span></div>
+          <div class="coming-soon-item"><span class="coming-soon-icon">📤</span><div><div class="coming-soon-name">PDF Export</div><div class="coming-soon-desc">Download designs as PDF files</div></div><span class="coming-soon-tag">Soon</span></div>
+          <div class="coming-soon-item"><span class="coming-soon-icon">📐</span><div><div class="coming-soon-name">CAD Export</div><div class="coming-soon-desc">Export to AutoCAD format</div></div><span class="coming-soon-tag">Soon</span></div>
+          <div class="coming-soon-item"><span class="coming-soon-icon">💰</span><div><div class="coming-soon-name">Cost Estimator</div><div class="coming-soon-desc">Material and labour cost estimates</div></div><span class="coming-soon-tag">Soon</span></div>
+          <div class="coming-soon-item"><span class="coming-soon-icon">🏠</span><div><div class="coming-soon-name">Left & Right Views</div><div class="coming-soon-desc">Complete 360° building views</div></div><span class="coming-soon-tag">Soon</span></div>
+          <div class="coming-soon-item"><span class="coming-soon-icon">🤝</span><div><div class="coming-soon-name">Team Collaboration</div><div class="coming-soon-desc">Share projects with your team</div></div><span class="coming-soon-tag">Soon</span></div>
         </div>
       </div>
 
-      <!-- DANGER ZONE -->
       <div class="settings-section">
         <div class="settings-section-title">⚠️ Danger Zone</div>
-        <button class="btn-danger" onclick="deleteAccount()">
-          🗑️ Delete My Account
-        </button>
-        <button class="btn-signout-full" onclick="signOutFull()">
-          🚪 Sign Out
-        </button>
+        <button class="btn-danger" onclick="deleteAccount()">🗑️ Delete My Account</button>
+        <button class="btn-signout-full" onclick="signOutFull()">🚪 Sign Out</button>
       </div>
 
     </div>
   </div>
+
+  <!-- ========================
+       CHAT ASSISTANT DRAWER
+  ======================== -->
+  <div class="chat-overlay" id="chatOverlay" onclick="closeChat()"></div>
+
+  <div class="chat-drawer" id="chatDrawer">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">🏗️</div>
+        <div>
+          <div class="chat-name">ArchGen Assistant</div>
+          <div class="chat-status" id="chatStatus">
+            <span class="chat-status-dot"></span> Online
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-voice-toggle" id="voiceToggle" onclick="toggleVoice()" title="Toggle voice">🔊</button>
+        <button class="chat-close" onclick="closeChat()">✕</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg assistant">
+        <div class="chat-msg-avatar">🏗️</div>
+        <div class="chat-msg-bubble">
+          <div class="chat-msg-text" id="welcomeMsg">
+            Hello! I am your ArchGen AI assistant. I can help you with building design questions, material recommendations, Nigerian building codes, and anything about your current project. How can I help you today?
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-suggestions" id="chatSuggestions">
+      <button class="chat-suggestion" onclick="sendSuggestion(this)">What roof suits Lagos weather?</button>
+      <button class="chat-suggestion" onclick="sendSuggestion(this)">Best foundation for swampy soil?</button>
+      <button class="chat-suggestion" onclick="sendSuggestion(this)">How many rooms fit my plot?</button>
+      <button class="chat-suggestion" onclick="sendSuggestion(this)">Explain my floor plan</button>
+    </div>
+
+    <div class="chat-input-row">
+      <button class="chat-mic-btn" id="micBtn" onclick="startVoiceInput()" title="Speak your question">🎤</button>
+      <input
+        type="text"
+        class="chat-input"
+        id="chatInput"
+        placeholder="Ask about your building design..."
+      />
+      <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">➤</button>
+    </div>
+  </div>
+
+  <!-- CHAT FLOATING BUTTON -->
+  <button class="chat-fab" id="chatFab" onclick="openChat()">
+    <span class="chat-fab-icon">💬</span>
+    <span class="chat-fab-badge" id="chatBadge" style="display:none">1</span>
+  </button>
 
   <!-- HEADER -->
   <header class="header">
@@ -255,9 +232,7 @@
           <div class="user-email" id="userEmail">...</div>
         </div>
       </div>
-      <button class="btn-settings" id="settingsBtn" onclick="openSettings()">
-        ⚙️ Settings
-      </button>
+      <button class="btn-settings" onclick="openSettings()">⚙️ Settings</button>
       <div class="badge">AI-Powered</div>
     </div>
   </header>
@@ -265,7 +240,6 @@
   <!-- MAIN LAYOUT -->
   <div class="main">
 
-    <!-- LEFT PANEL -->
     <aside class="panel">
 
       <div class="section">
@@ -319,36 +293,22 @@
 
       <div class="section">
         <div class="section-title" data-lang="roomsLayout">Rooms & Layout</div>
-       <div class="row">
-  <div class="field">
-    <label data-lang="bedrooms">Bedrooms</label>
-    <div class="input-unit">
-      <input
-        type="number"
-        id="bedrooms"
-        value="3"
-        min="1"
-        max="20"
-        placeholder="e.g. 3"
-      />
-      <span class="unit">BR</span>
-    </div>
-  </div>
-  <div class="field">
-    <label data-lang="bathrooms">Bathrooms</label>
-    <div class="input-unit">
-      <input
-        type="number"
-        id="bathrooms"
-        value="2"
-        min="1"
-        max="10"
-        placeholder="e.g. 2"
-      />
-      <span class="unit">BA</span>
-    </div>
-  </div>
-</div>
+        <div class="row">
+          <div class="field">
+            <label data-lang="bedrooms">Bedrooms</label>
+            <div class="input-unit">
+              <input type="number" id="bedrooms" value="3" min="1" max="20" placeholder="e.g. 3" />
+              <span class="unit">BR</span>
+            </div>
+          </div>
+          <div class="field">
+            <label data-lang="bathrooms">Bathrooms</label>
+            <div class="input-unit">
+              <input type="number" id="bathrooms" value="2" min="1" max="10" placeholder="e.g. 2" />
+              <span class="unit">BA</span>
+            </div>
+          </div>
+        </div>
         <div class="toggle-group multi" id="extras">
           <button class="toggle active" data-val="Living Room" data-lang="livingRoom">Living Room</button>
           <button class="toggle active" data-val="Dining" data-lang="dining">Dining</button>
@@ -397,32 +357,30 @@
       <div class="section">
         <div class="section-title" data-lang="specificReqs">Specific Requirements</div>
         <textarea id="requirements" data-lang-placeholder="requirementsPlaceholder"
-          placeholder="e.g. Master en-suite bedroom, open-plan living/dining, cream exterior...">
-        </textarea>
+          placeholder="e.g. Master en-suite bedroom, open-plan living/dining..."></textarea>
       </div>
 
       <button class="btn-generate" id="generateBtn" data-lang="generateBtn">
         Generate Blueprints
       </button>
 
-      <div class="section" style="margin-top:20px">
+      <div style="text-align:center;font-size:11px;color:var(--text-muted);padding:6px 0;margin-top:4px;" id="genCounter"></div>
+
+      <div class="section" style="margin-top:16px">
         <div class="section-title" data-lang="savedProjects">Saved Projects</div>
         <div class="projects-list" id="projectsList">
-          <div class="no-projects" data-lang="noProjects">No saved projects yet.<br/>Generate and save your first design!</div>
+          <div class="no-projects" data-lang="noProjects">No saved projects yet.</div>
         </div>
       </div>
 
     </aside>
 
-    <!-- RIGHT CANVAS -->
     <main class="canvas">
 
       <div class="canvas-header">
         <h2 class="canvas-title" data-lang="designOutput">Design Output</h2>
         <div class="canvas-actions">
-          <button class="btn-save" id="saveBtn" style="display:none" data-lang="saveProject">
-            💾 Save Project
-          </button>
+          <button class="btn-save" id="saveBtn" style="display:none" data-lang="saveProject">💾 Save Project</button>
           <div class="status-row">
             <div class="status-dot" id="statusDot"></div>
             <span class="status-text" id="statusText" data-lang="readyToGenerate">Ready to generate</span>
@@ -435,8 +393,7 @@
         <div class="save-modal-box">
           <div class="save-modal-title">💾 Save This Project</div>
           <div class="save-modal-sub">Give your design a name to save it</div>
-          <input type="text" class="save-modal-input" id="projectNameInput"
-            placeholder="e.g. Lagos 3-Bedroom Bungalow" />
+          <input type="text" class="save-modal-input" id="projectNameInput" placeholder="e.g. Lagos 3-Bedroom Bungalow" />
           <div class="save-modal-btns">
             <button class="save-modal-cancel" id="cancelSave">Cancel</button>
             <button class="save-modal-confirm" id="confirmSave">Save Project</button>
@@ -452,94 +409,49 @@
       </div>
 
       <div class="output-grid">
-
         <div class="output-card">
-          <div class="card-header">
-            <span class="card-type" data-lang="view3D">3D Isometric View</span>
-          </div>
+          <div class="card-header"><span class="card-type" data-lang="view3D">3D Isometric View</span></div>
           <div class="card-body">
-            <div class="loading" id="load0">
-              <div class="spinner"></div>
-              <span data-lang="generatingExterior">Generating exterior...</span>
-            </div>
-            <div class="placeholder" id="ph0">
-              <div class="ph-icon">🏗️</div>
-              <div class="ph-text" data-lang="ph3D">3D view will appear here</div>
-            </div>
+            <div class="loading" id="load0"><div class="spinner"></div><span data-lang="generatingExterior">Generating exterior...</span></div>
+            <div class="placeholder" id="ph0"><div class="ph-icon">🏗️</div><div class="ph-text" data-lang="ph3D">3D view will appear here</div></div>
             <div class="svg-display" id="svg0"></div>
             <div class="result-text" id="res0"></div>
           </div>
         </div>
-
         <div class="output-card">
-          <div class="card-header">
-            <span class="card-type" data-lang="frontFacade">Front Facade</span>
-          </div>
+          <div class="card-header"><span class="card-type" data-lang="frontFacade">Front Facade</span></div>
           <div class="card-body">
-            <div class="loading" id="load1">
-              <div class="spinner"></div>
-              <span data-lang="renderingFacade">Rendering facade...</span>
-            </div>
-            <div class="placeholder" id="ph1">
-              <div class="ph-icon">🏠</div>
-              <div class="ph-text" data-lang="phFacade">Front elevation will appear here</div>
-            </div>
+            <div class="loading" id="load1"><div class="spinner"></div><span data-lang="renderingFacade">Rendering facade...</span></div>
+            <div class="placeholder" id="ph1"><div class="ph-icon">🏠</div><div class="ph-text" data-lang="phFacade">Front elevation will appear here</div></div>
             <div class="svg-display" id="svg1"></div>
             <div class="result-text" id="res1"></div>
           </div>
         </div>
-
         <div class="output-card">
-          <div class="card-header">
-            <span class="card-type" data-lang="floorPlan">Floor Plan Layout</span>
-          </div>
+          <div class="card-header"><span class="card-type" data-lang="floorPlan">Floor Plan Layout</span></div>
           <div class="card-body">
-            <div class="loading" id="load2">
-              <div class="spinner"></div>
-              <span data-lang="drawingFloorPlan">Drawing floor plan...</span>
-            </div>
-            <div class="placeholder" id="ph2">
-              <div class="ph-icon">📐</div>
-              <div class="ph-text" data-lang="phFloorPlan">Floor plan will appear here</div>
-            </div>
+            <div class="loading" id="load2"><div class="spinner"></div><span data-lang="drawingFloorPlan">Drawing floor plan...</span></div>
+            <div class="placeholder" id="ph2"><div class="ph-icon">📐</div><div class="ph-text" data-lang="phFloorPlan">Floor plan will appear here</div></div>
             <div class="svg-display" id="svg2"></div>
             <div class="result-text" id="res2"></div>
           </div>
         </div>
-
         <div class="output-card">
-          <div class="card-header">
-            <span class="card-type" data-lang="interiorView">Interior Cutaway View</span>
-          </div>
+          <div class="card-header"><span class="card-type" data-lang="interiorView">Interior Cutaway View</span></div>
           <div class="card-body">
-            <div class="loading" id="load3">
-              <div class="spinner"></div>
-              <span data-lang="visualizingInterior">Visualizing interior...</span>
-            </div>
-            <div class="placeholder" id="ph3">
-              <div class="ph-icon">🛋️</div>
-              <div class="ph-text" data-lang="phInterior">Dollhouse interior will appear here</div>
-            </div>
+            <div class="loading" id="load3"><div class="spinner"></div><span data-lang="visualizingInterior">Visualizing interior...</span></div>
+            <div class="placeholder" id="ph3"><div class="ph-icon">🛋️</div><div class="ph-text" data-lang="phInterior">Dollhouse interior will appear here</div></div>
             <div class="svg-display" id="svg3"></div>
             <div class="result-text" id="res3"></div>
           </div>
         </div>
-
       </div>
 
       <div class="output-card specs-card" id="specsCard">
-        <div class="card-header">
-          <span class="card-type" data-lang="techSpecs">Technical Specifications & Materials</span>
-        </div>
+        <div class="card-header"><span class="card-type" data-lang="techSpecs">Technical Specifications & Materials</span></div>
         <div class="card-body">
-          <div class="loading" id="load4">
-            <div class="spinner"></div>
-            <span data-lang="compilingSpecs">Compiling specifications...</span>
-          </div>
-          <div class="placeholder" id="ph4">
-            <div class="ph-icon">📋</div>
-            <div class="ph-text" data-lang="phSpecs">Technical specs will appear here</div>
-          </div>
+          <div class="loading" id="load4"><div class="spinner"></div><span data-lang="compilingSpecs">Compiling specifications...</span></div>
+          <div class="placeholder" id="ph4"><div class="ph-icon">📋</div><div class="ph-text" data-lang="phSpecs">Technical specs will appear here</div></div>
           <div class="result-text" id="res4"></div>
         </div>
       </div>
