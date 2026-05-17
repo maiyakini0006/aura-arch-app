@@ -319,25 +319,36 @@
 
       <div class="section">
         <div class="section-title" data-lang="roomsLayout">Rooms & Layout</div>
-        <div class="row">
-          <div class="field">
-            <label data-lang="bedrooms">Bedrooms</label>
-            <select id="bedrooms">
-              <option value="2">2 Bedrooms</option>
-              <option value="3" selected>3 Bedrooms</option>
-              <option value="4">4 Bedrooms</option>
-              <option value="5">5 Bedrooms</option>
-            </select>
-          </div>
-          <div class="field">
-            <label data-lang="bathrooms">Bathrooms</label>
-            <select id="bathrooms">
-              <option value="1">1 Bathroom</option>
-              <option value="2" selected>2 Bathrooms</option>
-              <option value="3">3 Bathrooms</option>
-            </select>
-          </div>
-        </div>
+       <div class="row">
+  <div class="field">
+    <label data-lang="bedrooms">Bedrooms</label>
+    <div class="input-unit">
+      <input
+        type="number"
+        id="bedrooms"
+        value="3"
+        min="1"
+        max="20"
+        placeholder="e.g. 3"
+      />
+      <span class="unit">BR</span>
+    </div>
+  </div>
+  <div class="field">
+    <label data-lang="bathrooms">Bathrooms</label>
+    <div class="input-unit">
+      <input
+        type="number"
+        id="bathrooms"
+        value="2"
+        min="1"
+        max="10"
+        placeholder="e.g. 2"
+      />
+      <span class="unit">BA</span>
+    </div>
+  </div>
+</div>
         <div class="toggle-group multi" id="extras">
           <button class="toggle active" data-val="Living Room" data-lang="livingRoom">Living Room</button>
           <button class="toggle active" data-val="Dining" data-lang="dining">Dining</button>
