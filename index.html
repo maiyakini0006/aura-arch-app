@@ -763,21 +763,32 @@
     }
 
     function paymentSuccess(email, reference) {
-      // Save plan to localStorage
-      const session = localStorage.getItem('archgen_session');
-      if (session) {
-        const user  = JSON.parse(session);
-        user.plan   = currentPlanId;
-        user.planName = currentPlan;
-        user.paidAt = new Date().toISOString();
-        user.payRef = reference;
-        localStorage.setItem('archgen_session', JSON.stringify(user));
-      }
+  // Save to session
+  const session = localStorage.getItem('archgen_session');
+  if (session) {
+    const user    = JSON.parse(session);
+    user.plan     = currentPlanId;
+    user.planName = currentPlan;
+    user.paidAt   = new Date().toISOString();
+    user.payRef   = reference;
+    localStorage.setItem('archgen_session', JSON.stringify(user));
+  }
 
-      // Show success modal
-      document.getElementById('successMsg').textContent =
-        'Welcome to MY ArchGen ' + currentPlan + '! Your account has been upgraded. Reference: ' + reference;
-      document.getElementById('successModal').classList.add('show');
+  // Also save to users list so it persists after logout
+  const users = JSON.parse(localStorage.getItem('archgen_users') || '[]');
+  const idx   = users.findIndex(u => u.email === email);
+  if (idx !== -1) {
+    users[idx].plan     = currentPlanId;
+    users[idx].planName = currentPlan;
+    users[idx].paidAt   = new Date().toISOString();
+    users[idx].payRef   = reference;
+    localStorage.setItem('archgen_users', JSON.stringify(users));
+  }
+
+  document.getElementById('successMsg').textContent =
+    'Welcome to MY ArchGen ' + currentPlan + '! Reference: ' + reference;
+  document.getElementById('successModal').classList.add('show');
+}
     }
   </script>
 
