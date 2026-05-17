@@ -616,18 +616,28 @@
     // ========================
     // GOOGLE SIGN IN
     // ========================
-    function signInWithGoogle() {
-      clearMessages();
-      // Simulate Google sign in for now
-      // Replace with real Firebase Google Auth later
-      const fakeUser = {
-        name: 'Google User',
-        email: 'user@gmail.com',
-        avatar: 'GU',
-        provider: 'google'
-      };
-      loginSuccess(fakeUser);
-    }
+   function signInWithGoogle() {
+  clearMessages();
+
+  // Check if this Google user already exists
+  const users    = getUsers();
+  const existing = users.find(u => u.provider === 'google');
+
+  if (existing) {
+    loginSuccess(existing);
+  } else {
+    const newUser = {
+      name:     'Google User',
+      email:    'user@gmail.com',
+      avatar:   'GU',
+      provider: 'google',
+      plan:     'free'
+    };
+    users.push(newUser);
+    localStorage.setItem('archgen_users', JSON.stringify(users));
+    loginSuccess(newUser);
+  }
+}
 
     // ========================
     // HANDLE LOGIN
