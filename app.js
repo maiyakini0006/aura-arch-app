@@ -600,7 +600,7 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 // ========================
 
 async function callAI(prompt) {
-  const GEMINI_KEY = 'AIzaSyALyF5inTl7NNPyhzXrLtIxYGgWCkbl9bw';
+  const GEMINI_KEY = 'AIzaSyAvXYdH6WEbrpoFaW39Inf_aCGRRWV2zoc';
   const response = await fetch(
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY,
     {
