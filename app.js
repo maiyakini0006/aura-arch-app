@@ -59,7 +59,7 @@ const translations = {
     compilingSpecs: 'Ana tattara bayanai...', ph3D: 'Kallonin 3D zai bayyana nan',
     phFacade: 'Gaban gini zai bayyana nan', phFloorPlan: 'Tsarin bene zai bayyana nan',
     phInterior: 'Cikin gini zai bayyana nan', phSpecs: 'Bayanin fasaha zai bayyana nan',
-    chatWelcome: 'Sannu! Ni ne mataimakiyar ArchGen AI. Zan iya taimaka maka da tambayoyin zanen gini. Yaya zan taimake ka yau?',
+    chatWelcome: 'Sannu! Ni ne mataimakiyar ArchGen AI. Yaya zan taimake ka yau?',
     chatPlaceholder: 'Tambayi game da zanen gini...',
     chatSug1: 'Wane rufi ya dace da yanayin Lagos?',
     chatSug2: 'Mafi kyawun tushe don kasa mai ruwa?',
@@ -90,7 +90,7 @@ const translations = {
     compilingSpecs: 'Ń kojọ àlàyé...', ph3D: 'Ìwòran 3D yóò farahàn níbí',
     phFacade: 'Iwájú ilé yóò farahàn níbí', phFloorPlan: 'Ètò ilé yóò farahàn níbí',
     phInterior: 'Inú ilé yóò farahàn níbí', phSpecs: 'Àlàyé ìmọ̀-ẹ̀rọ yóò farahàn níbí',
-    chatWelcome: 'Ẹ káàbọ̀! Èmi ni olùrànlọ́wọ́ ArchGen AI. Mo lè ràn ọ́ lọ́wọ́ pẹ̀lú àwọn ìbéèrè ìpìlẹ̀ ilé. Báwo ni mo ṣe lè ràn ọ́ lọ́wọ́?',
+    chatWelcome: 'Ẹ káàbọ̀! Èmi ni olùrànlọ́wọ́ ArchGen AI. Báwo ni mo ṣe lè ràn ọ́ lọ́wọ́?',
     chatPlaceholder: 'Béèrè nípa ìpìlẹ̀ ilé rẹ...',
     chatSug1: 'Orí ilé wo ni o dára fún Lagos?',
     chatSug2: 'Ìpìlẹ̀ tó dára fún ilẹ̀ olomi?',
@@ -121,7 +121,7 @@ const translations = {
     compilingSpecs: 'Na-anakọta nkọwa...', ph3D: 'Ọhụụ 3D ga-apụta ebe a',
     phFacade: 'Ihu ulo ga-apụta ebe a', phFloorPlan: 'Atụmatụ alo ga-apụta ebe a',
     phInterior: 'ime ulo ga-apụta ebe a', phSpecs: 'Nkọwa teknụzụ ga-apụta ebe a',
-    chatWelcome: 'Nnọọ! Abụ m onye enyemaka ArchGen AI. Enwere m ike inyere gị aka na ajụjụ ihe owuwu ụlọ. Olee otú m ga-si enyere gị aka taa?',
+    chatWelcome: 'Nnọọ! Abụ m onye enyemaka ArchGen AI. Olee otú m ga-si enyere gị aka?',
     chatPlaceholder: 'Jụọ maka ihe owuwu ụlọ gị...',
     chatSug1: 'Elu ulo ole dị mma maka Lagos?',
     chatSug2: 'Ọdịda ala kacha mma maka ala mmiri?',
@@ -137,11 +137,11 @@ const translations = {
     roofStyle: 'Style de Toit', hipRoof: 'Toit en Croupe', flatRoof: 'Toit Plat',
     gableRoof: 'Toit à Pignon', mansard: 'Mansard', roomsLayout: 'Pièces & Disposition',
     bedrooms: 'Chambres', bathrooms: 'Salles de Bain', livingRoom: 'Salon',
-    dining: 'Salle à Manger', kitchen: 'Cuisine', store: 'Débarras', study: 'Bureau',
-    garage: 'Garage', siteConditions: 'Conditions du Site', soilType: 'Type de Sol',
-    zoning: 'Zonage / Recul', consistencySeed: 'Graine de Cohérence',
-    generationSeed: 'Graine de Génération', randomize: 'Aléatoire',
-    seedInfo: '🔒 La graine fixe garde les 4 sorties identiques',
+    dining: 'Salle à Manger', kitchen: 'Cuisine', store: 'Débarras',
+    study: 'Bureau', garage: 'Garage', siteConditions: 'Conditions du Site',
+    soilType: 'Type de Sol', zoning: 'Zonage / Recul',
+    consistencySeed: 'Graine de Cohérence', generationSeed: 'Graine de Génération',
+    randomize: 'Aléatoire', seedInfo: '🔒 La graine fixe garde les 4 sorties identiques',
     specificReqs: 'Exigences Spécifiques', requirementsPlaceholder: 'Ex: Suite parentale...',
     generateBtn: 'Générer les Plans', savedProjects: 'Projets Sauvegardés',
     noProjects: 'Aucun projet sauvegardé.\nGénérez votre premier design!',
@@ -154,7 +154,7 @@ const translations = {
     compilingSpecs: 'Compilation des specs...', ph3D: 'La vue 3D apparaîtra ici',
     phFacade: 'La façade apparaîtra ici', phFloorPlan: 'Le plan apparaîtra ici',
     phInterior: 'L\'intérieur apparaîtra ici', phSpecs: 'Les specs apparaîtront ici',
-    chatWelcome: 'Bonjour! Je suis votre assistant ArchGen AI. Je peux vous aider avec vos questions de conception architecturale. Comment puis-je vous aider aujourd\'hui?',
+    chatWelcome: 'Bonjour! Je suis votre assistant ArchGen AI. Comment puis-je vous aider?',
     chatPlaceholder: 'Posez une question sur votre bâtiment...',
     chatSug1: 'Quel toit pour le climat de Lagos?',
     chatSug2: 'Meilleure fondation pour sol marécageux?',
@@ -185,7 +185,7 @@ const translations = {
     compilingSpecs: 'جاري تجميع المواصفات...', ph3D: 'سيظهر العرض ثلاثي الأبعاد هنا',
     phFacade: 'ستظهر الواجهة هنا', phFloorPlan: 'سيظهر المخطط هنا',
     phInterior: 'سيظهر الداخل هنا', phSpecs: 'ستظهر المواصفات هنا',
-    chatWelcome: 'مرحباً! أنا مساعد ArchGen الذكي. يمكنني مساعدتك في أسئلة التصميم المعماري. كيف يمكنني مساعدتك اليوم؟',
+    chatWelcome: 'مرحباً! أنا مساعد ArchGen الذكي. كيف يمكنني مساعدتك اليوم؟',
     chatPlaceholder: 'اسأل عن تصميم مبناك...',
     chatSug1: 'ما السقف المناسب لمناخ لاغوس؟',
     chatSug2: 'أفضل أساس للتربة المستنقعية؟',
@@ -217,21 +217,13 @@ function applyLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   const activeBtn = document.getElementById('lang-' + lang);
   if (activeBtn) activeBtn.classList.add('active');
-
-  // Update chat welcome message
   const welcomeMsg = document.getElementById('welcomeMsg');
   if (welcomeMsg && t.chatWelcome) welcomeMsg.textContent = t.chatWelcome;
-
-  // Update chat placeholder
   const chatInput = document.getElementById('chatInput');
   if (chatInput && t.chatPlaceholder) chatInput.placeholder = t.chatPlaceholder;
-
-  // Update chat suggestions
   const sugs = document.querySelectorAll('.chat-suggestion');
   const sugKeys = ['chatSug1','chatSug2','chatSug3','chatSug4'];
   sugs.forEach((s, i) => { if (t[sugKeys[i]]) s.textContent = t[sugKeys[i]]; });
-
-  // Update voice language
   if (window.speechSynthesis) window.speechSynthesis.cancel();
 }
 
@@ -240,12 +232,18 @@ function applyLanguage(lang) {
 // ========================
 
 function getUserPlan() {
-  const session = localStorage.getItem('archgen_session');
-  if (!session) return 'free';
-  try { return JSON.parse(session).plan || 'free'; } catch(e) { return 'free'; }
+  try {
+    const session = localStorage.getItem('archgen_session');
+    if (!session) return 'free';
+    const user = JSON.parse(session);
+    return (user.plan || 'free').toLowerCase().trim();
+  } catch(e) { return 'free'; }
 }
 
-function isPro() { return getUserPlan() === 'pro' || getUserPlan() === 'studio'; }
+function isPro() {
+  const plan = getUserPlan();
+  return plan === 'pro' || plan === 'studio';
+}
 
 // ========================
 // GENERATION COUNTER
@@ -254,9 +252,11 @@ function isPro() { return getUserPlan() === 'pro' || getUserPlan() === 'studio';
 const FREE_DAILY_LIMIT = 3;
 
 function getTodayKey() {
-  const session = JSON.parse(localStorage.getItem('archgen_session'));
-  const date    = new Date().toISOString().split('T')[0];
-  return 'archgen_gens_' + session.email.replace('@','_').replace('.','_') + '_' + date;
+  try {
+    const session = JSON.parse(localStorage.getItem('archgen_session'));
+    const date    = new Date().toISOString().split('T')[0];
+    return 'archgen_gens_' + session.email.replace('@','_').replace('.','_') + '_' + date;
+  } catch(e) { return 'archgen_gens_guest'; }
 }
 
 function getGenerationCount() {
@@ -272,7 +272,11 @@ function incrementGenerationCount() {
 
 function checkGenerationLimit() {
   if (isPro()) return true;
-  if (getGenerationCount() >= FREE_DAILY_LIMIT) { showUpgradeModal('generation'); return false; }
+  const count = getGenerationCount();
+  if (count >= FREE_DAILY_LIMIT) {
+    showUpgradeModal('generation');
+    return false;
+  }
   return true;
 }
 
@@ -280,7 +284,7 @@ function updateGenerationCounter() {
   const counter = document.getElementById('genCounter');
   if (!counter) return;
   if (isPro()) {
-    counter.textContent = '∞ Unlimited generations';
+    counter.textContent = '⭐ Pro — Unlimited generations';
     counter.style.color = 'var(--accent)';
   } else {
     const remaining = Math.max(0, FREE_DAILY_LIMIT - getGenerationCount());
@@ -298,12 +302,12 @@ function showUpgradeModal(reason) {
   const title    = document.getElementById('upgradeTitle');
   const subtitle = document.getElementById('upgradeSubtitle');
   const msgs = {
-    generation: ['🚀 Daily Limit Reached!', 'You have used all 3 free generations for today. Upgrade to Pro for unlimited designs every day!'],
+    generation: ['🚀 Daily Limit Reached!', 'You have used all 3 free generations today. Upgrade to Pro for unlimited designs!'],
     save:       ['💾 Pro Feature', 'Saving projects is a Pro feature. Upgrade to save unlimited designs!'],
-    specs:      ['📋 Pro Feature', 'Technical specifications are a Pro feature. Upgrade to get full AI-generated specs!'],
-    language:   ['🌍 Pro Feature', 'Language switching is a Pro feature. Upgrade to access all 6 languages!'],
-    settings:   ['⚙️ Pro Feature', 'Advanced settings are a Pro feature. Upgrade to access full settings!'],
-    chat:       ['💬 Pro Feature', 'The AI Chat Assistant is a Pro feature. Upgrade to get instant design advice in any language!'],
+    specs:      ['📋 Pro Feature', 'Technical specifications are a Pro feature. Upgrade for full AI specs!'],
+    language:   ['🌍 Pro Feature', 'Language switching is a Pro feature. Upgrade for all 6 languages!'],
+    settings:   ['⚙️ Pro Feature', 'Advanced settings are a Pro feature. Upgrade for full settings access!'],
+    chat:       ['💬 Pro Feature', 'Upgrade to Pro to unlock the AI Chat Assistant and Voice features!'],
   };
   const msg = msgs[reason] || msgs.generation;
   title.textContent    = msg[0];
@@ -322,23 +326,44 @@ function closeUpgradeModal() {
 function checkAuth() {
   const session = localStorage.getItem('archgen_session');
   if (!session) { window.location.href = 'auth.html'; return; }
-  const user = JSON.parse(session);
+
+  let user;
+  try { user = JSON.parse(session); } catch(e) { window.location.href = 'auth.html'; return; }
   if (!user.loggedIn) { window.location.href = 'auth.html'; return; }
 
-  document.getElementById('authCheck').style.display  = 'none';
-  document.getElementById('userName').textContent      = user.name;
-  document.getElementById('userEmail').textContent     = user.email;
-  document.getElementById('userAvatar').textContent    = user.avatar || user.name.slice(0,2).toUpperCase();
+  // Fill header
+  document.getElementById('authCheck').style.display   = 'none';
+  document.getElementById('userName').textContent       = user.name;
+  document.getElementById('userEmail').textContent      = user.email;
+  document.getElementById('userAvatar').textContent     = user.avatar || user.name.slice(0,2).toUpperCase();
+
+  // Fill settings
   document.getElementById('settingsAvatar').textContent = user.avatar || user.name.slice(0,2).toUpperCase();
   document.getElementById('settingsName').textContent   = user.name;
   document.getElementById('settingsEmail').textContent  = user.email;
   document.getElementById('newName').value              = user.name;
   document.getElementById('newEmail').value             = user.email;
 
+  // Plan badge in settings account section
   const planBadge = document.getElementById('planBadge');
   if (planBadge) {
     planBadge.textContent = isPro() ? '⭐ Pro Plan' : '🆓 Free Plan';
     planBadge.style.color = isPro() ? '#C9A84C' : '#8A8880';
+  }
+
+  // Fix subscription section in settings
+  const currentPlanName  = document.getElementById('currentPlanName');
+  const currentPlanPrice = document.getElementById('currentPlanPrice');
+  const upgradeBtn       = document.querySelector('.btn-upgrade');
+
+  if (isPro()) {
+    if (currentPlanName)  currentPlanName.textContent  = '⭐ Pro Plan';
+    if (currentPlanPrice) currentPlanPrice.textContent = '₦2,500/month';
+    if (upgradeBtn)       upgradeBtn.style.display     = 'none';
+  } else {
+    if (currentPlanName)  currentPlanName.textContent  = '🆓 Free Plan';
+    if (currentPlanPrice) currentPlanPrice.textContent = '₦0/month';
+    if (upgradeBtn)       upgradeBtn.style.display     = 'block';
   }
 
   updateGenerationCounter();
@@ -356,7 +381,6 @@ checkAuth();
 // ========================
 
 function openSettings() {
-  if (!isPro()) { showUpgradeModal('settings'); return; }
   document.getElementById('settingsPanel').classList.add('open');
   document.getElementById('settingsOverlay').classList.add('show');
 }
@@ -377,13 +401,18 @@ function saveAccount() {
   if (password && password !== confirm) { msg.textContent = 'Passwords do not match'; msg.className = 'settings-msg error'; return; }
   if (password && password.length < 6) { msg.textContent = 'Password must be at least 6 characters'; msg.className = 'settings-msg error'; return; }
 
-  const session = JSON.parse(localStorage.getItem('archgen_session'));
-  session.name = name; session.email = email; session.avatar = name.slice(0,2).toUpperCase();
+  const session  = JSON.parse(localStorage.getItem('archgen_session'));
+  session.name   = name; session.email = email;
+  session.avatar = name.slice(0,2).toUpperCase();
   localStorage.setItem('archgen_session', JSON.stringify(session));
 
   const users = JSON.parse(localStorage.getItem('archgen_users') || '[]');
   const idx   = users.findIndex(u => u.email === email);
-  if (idx !== -1) { users[idx].name = name; users[idx].email = email; if (password) users[idx].password = password; localStorage.setItem('archgen_users', JSON.stringify(users)); }
+  if (idx !== -1) {
+    users[idx].name = name; users[idx].email = email;
+    if (password) users[idx].password = password;
+    localStorage.setItem('archgen_users', JSON.stringify(users));
+  }
 
   document.getElementById('userName').textContent       = name;
   document.getElementById('userEmail').textContent      = email;
@@ -391,8 +420,8 @@ function saveAccount() {
   document.getElementById('settingsAvatar').textContent = name.slice(0,2).toUpperCase();
   document.getElementById('settingsName').textContent   = name;
   document.getElementById('settingsEmail').textContent  = email;
-  document.getElementById('newPassword').value = '';
-  document.getElementById('confirmPassword').value = '';
+  document.getElementById('newPassword').value          = '';
+  document.getElementById('confirmPassword').value      = '';
 
   msg.textContent = '✓ Account updated successfully!';
   msg.className   = 'settings-msg success';
@@ -401,11 +430,13 @@ function saveAccount() {
 
 function setTheme(theme) {
   if (theme === 'light') {
-    document.body.classList.add('light'); localStorage.setItem('archgen-theme','light');
+    document.body.classList.add('light');
+    localStorage.setItem('archgen-theme', 'light');
     document.getElementById('themeLight').classList.add('active');
     document.getElementById('themeDark').classList.remove('active');
   } else {
-    document.body.classList.remove('light'); localStorage.setItem('archgen-theme','dark');
+    document.body.classList.remove('light');
+    localStorage.setItem('archgen-theme', 'dark');
     document.getElementById('themeDark').classList.add('active');
     document.getElementById('themeLight').classList.remove('active');
   }
@@ -438,7 +469,10 @@ function loadAccentColor() {
 }
 
 function setLanguage(lang) {
-  if (!isPro() && lang !== 'en') { showUpgradeModal('language'); return; }
+  if (!isPro() && lang !== 'en') {
+    showUpgradeModal('language');
+    return;
+  }
   applyLanguage(lang);
 }
 
@@ -556,7 +590,7 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
     <div class="summary-item"><div class="summary-val">${plotW}×${plotL}</div><div class="summary-key">Plot (ft)</div></div>
     <div class="summary-item"><div class="summary-val">${beds}BR/${baths}BA</div><div class="summary-key">Rooms</div></div>
     <div class="summary-item"><div class="summary-val">${seed}</div><div class="summary-key">Seed</div></div>
-    <div class="summary-item"><div class="summary-val">${isPro() ? '∞' : Math.max(0, FREE_DAILY_LIMIT - getGenerationCount())}</div><div class="summary-key">${isPro() ? 'Pro' : 'Left Today'}</div></div>
+    <div class="summary-item"><div class="summary-val">${isPro()?'∞':Math.max(0,FREE_DAILY_LIMIT-getGenerationCount())}</div><div class="summary-key">${isPro()?'Pro':'Left Today'}</div></div>
   `;
   card.classList.add('show');
 }
@@ -566,7 +600,7 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 // ========================
 
 async function callAI(prompt) {
-  const GEMINI_KEY = 'AIzaSyB5HCs_uuycGTg_yhDhVfsb-s6ighpBIYk';
+  const GEMINI_KEY = 'AIzaSyALyF5inTl7NNPyhzXrLtIxYGgWCkbl9bw';
   const response = await fetch(
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY,
     {
@@ -585,7 +619,7 @@ async function callAI(prompt) {
 }
 
 // ========================
-// SVG GENERATORS
+// SVG WATERMARK
 // ========================
 
 function addWatermark(svgCode) {
@@ -596,22 +630,25 @@ function addWatermark(svgCode) {
       transform="rotate(-30, 260, 160)" font-weight="bold">MY ArchGen FREE</text></svg>`);
 }
 
+// ========================
+// SVG GENERATORS
+// ========================
+
 function generate3DSVG(config) {
   const { beds, type, roof, style } = config;
   const wallColor = style==='Modern Nigerian'?'#F5DEB3':style==='Contemporary'?'#E8E8E8':style==='Colonial'?'#FFF8DC':'#F0F0F0';
-  const roofColor = '#8B4513'; const trimColor = '#8B6914';
-  const floors = type==='Duplex'?2:1; const floorH=80; const buildingW=200; const buildingH=floors*floorH;
-  const roofH = roof==='Flat Roof'?10:50; const cx=260; const cy=80; const depth=60;
-  const windows = [];
-  const winCount = Math.min(parseInt(beds)||3, 5);
-  for (let i=0;i<winCount;i++) {
-    const wx = cx-buildingW/2+30+i*((buildingW-40)/Math.max(winCount-1,1));
+  const roofColor='#8B4513'; const trimColor='#8B6914';
+  const floors=type==='Duplex'?2:1; const floorH=80; const buildingW=200; const buildingH=floors*floorH;
+  const roofH=roof==='Flat Roof'?10:50; const cx=260; const cy=80; const depth=60;
+  const windows=[]; const winCount=Math.min(parseInt(beds)||3,5);
+  for(let i=0;i<winCount;i++){
+    const wx=cx-buildingW/2+30+i*((buildingW-40)/Math.max(winCount-1,1));
     windows.push(`<rect x="${wx-12}" y="${cy+buildingH-55}" width="24" height="28" fill="#87CEEB" stroke="${trimColor}" stroke-width="2" rx="2"/>
       <line x1="${wx}" y1="${cy+buildingH-55}" x2="${wx}" y2="${cy+buildingH-27}" stroke="${trimColor}" stroke-width="1"/>
       <line x1="${wx-12}" y1="${cy+buildingH-41}" x2="${wx+12}" y2="${cy+buildingH-41}" stroke="${trimColor}" stroke-width="1"/>`);
-    if (floors===2) windows.push(`<rect x="${wx-12}" y="${cy+buildingH-120}" width="24" height="28" fill="#87CEEB" stroke="${trimColor}" stroke-width="2" rx="2"/>`);
+    if(floors===2) windows.push(`<rect x="${wx-12}" y="${cy+buildingH-120}" width="24" height="28" fill="#87CEEB" stroke="${trimColor}" stroke-width="2" rx="2"/>`);
   }
-  const roofPath = roof==='Flat Roof'
+  const roofPath=roof==='Flat Roof'
     ?`<rect x="${cx-buildingW/2-5}" y="${cy-roofH}" width="${buildingW+10}" height="${roofH}" fill="${roofColor}" stroke="#5D2E0C" stroke-width="1.5"/>`
     :`<polygon points="${cx},${cy-roofH} ${cx-buildingW/2-5},${cy} ${cx+buildingW/2+5},${cy}" fill="${roofColor}" stroke="#5D2E0C" stroke-width="1.5"/>`;
   return addWatermark(`<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:6px;">
@@ -633,17 +670,17 @@ function generate3DSVG(config) {
 }
 
 function generateFacadeSVG(config) {
-  const { beds, type, roof, style } = config;
-  const wallColor = style==='Modern Nigerian'?'#F5DEB3':style==='Contemporary'?'#E8E8E8':'#FFF8DC';
-  const roofColor='#8B4513'; const trimColor='#8B6914';
-  const floors=type==='Duplex'?2:1; const floorH=90; const buildingW=320; const buildingH=floors*floorH;
-  const startX=100; const startY=240-buildingH; const roofH=roof==='Flat Roof'?12:55;
-  const winCount=Math.min(parseInt(beds)||3,5); const windows=[];
+  const{beds,type,roof,style}=config;
+  const wallColor=style==='Modern Nigerian'?'#F5DEB3':style==='Contemporary'?'#E8E8E8':'#FFF8DC';
+  const roofColor='#8B4513';const trimColor='#8B6914';
+  const floors=type==='Duplex'?2:1;const floorH=90;const buildingW=320;const buildingH=floors*floorH;
+  const startX=100;const startY=240-buildingH;const roofH=roof==='Flat Roof'?12:55;
+  const winCount=Math.min(parseInt(beds)||3,5);const windows=[];
   const spacing=(buildingW-60)/Math.max(winCount,1);
-  for(let f=0;f<floors;f++) {
-    for(let i=0;i<winCount;i++) {
-      if(f===0&&i===Math.floor(winCount/2)) continue;
-      const wx=startX+30+i*spacing+spacing/2-15; const wy=startY+f*floorH+20;
+  for(let f=0;f<floors;f++){
+    for(let i=0;i<winCount;i++){
+      if(f===0&&i===Math.floor(winCount/2))continue;
+      const wx=startX+30+i*spacing+spacing/2-15;const wy=startY+f*floorH+20;
       windows.push(`<rect x="${wx}" y="${wy}" width="30" height="36" fill="#87CEEB" stroke="${trimColor}" stroke-width="2" rx="2"/>
         <line x1="${wx+15}" y1="${wy}" x2="${wx+15}" y2="${wy+36}" stroke="${trimColor}" stroke-width="1"/>
         <line x1="${wx}" y1="${wy+18}" x2="${wx+30}" y2="${wy+18}" stroke="${trimColor}" stroke-width="1"/>`);
@@ -667,10 +704,10 @@ function generateFacadeSVG(config) {
 }
 
 function generateFloorPlanSVG(config) {
-  const { beds, baths, extras, plotW, plotL } = config;
-  const numBeds=parseInt(beds)||3; const numBaths=parseInt(baths)||2;
-  const hasLiving=extras.includes('Living Room'); const hasDining=extras.includes('Dining'); const hasKitchen=extras.includes('Kitchen');
-  const sx=60; const sy=30; const wallC='#333';
+  const{beds,baths,extras,plotW,plotL}=config;
+  const numBeds=parseInt(beds)||3;const numBaths=parseInt(baths)||2;
+  const hasLiving=extras.includes('Living Room');const hasDining=extras.includes('Dining');const hasKitchen=extras.includes('Kitchen');
+  const sx=60;const sy=30;const wallC='#333';
   const roomC={bedroom:'#FFF3E0',living:'#E8F5E9',dining:'#E3F2FD',kitchen:'#FCE4EC',bathroom:'#E8EAF6',corridor:'#FAFAFA'};
   const rooms=[];
   if(hasLiving)  rooms.push({x:sx,y:sy,w:150,h:100,color:roomC.living,label:'LIVING ROOM',sub:'5.0x4.0m'});
@@ -698,8 +735,8 @@ function generateFloorPlanSVG(config) {
 }
 
 function generateInteriorSVG(config) {
-  const { style } = config;
-  const wallC = style==='Modern Nigerian'?'#F5DEB3':style==='Contemporary'?'#E8E8E8':'#FFF8DC';
+  const{style}=config;
+  const wallC=style==='Modern Nigerian'?'#F5DEB3':style==='Contemporary'?'#E8E8E8':'#FFF8DC';
   return addWatermark(`<svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:6px;">
     <rect width="520" height="300" fill="${wallC}" opacity="0.3" rx="6"/>
     <polygon points="0,240 520,240 480,300 40,300" fill="#C19A6B" opacity="0.6"/>
@@ -725,13 +762,13 @@ function generateInteriorSVG(config) {
 }
 
 // ========================
-// CURRENT DESIGN STATE
+// CURRENT DESIGN
 // ========================
 
 let currentDesign = null;
 
 // ========================
-// GENERATE FUNCTION
+// GENERATE
 // ========================
 
 async function generate() {
@@ -771,7 +808,7 @@ async function generate() {
 
   if (isPro()) {
     try {
-      const specResult = await callAI(`You are MY ArchGen, a professional architectural AI for Nigerian buildings. Generate technical specifications for: ${baseDesign}. Include foundation type for ${soil} soil, structural system, wall construction, roofing material, floor area in sq ft, columns, plumbing, electrical, Nigerian climate materials, and 3 zoning notes for ${zoning}. Write in clear prose, no bullet points.`);
+      const specResult = await callAI(`You are MY ArchGen, a professional architectural AI for Nigerian buildings. Generate technical specifications for: ${baseDesign}. Include foundation type for ${soil} soil, structural system, wall construction, roofing material, floor area in sq ft, columns, plumbing, electrical, Nigerian climate materials, and 3 zoning notes for ${zoning}. Write in clear prose.`);
       showResult(4, specResult);
     } catch(err) {
       showResult(4, 'Technical specs unavailable. Please check your API key.');
@@ -784,14 +821,17 @@ async function generate() {
       <div style="font-size:32px;margin-bottom:12px;">🔒</div>
       <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--text-main);margin-bottom:8px;">Pro Feature</div>
       <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;line-height:1.6;">Technical specifications are available on the Pro plan.</div>
-      <button onclick="showUpgradeModal('specs')" style="background:linear-gradient(135deg,#B8860B,#C9A84C);border:none;color:#0F0E0C;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:10px 20px;border-radius:6px;cursor:pointer;">⚡ Upgrade to Pro</button>
+      <button onclick="showUpgradeModal('specs')" style="background:linear-gradient(135deg,#B8860B,#C9A84C);border:none;color:#0F0E0C;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:10px 20px;border-radius:6px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;">⚡ Upgrade to Pro</button>
     </div>`;
     res4.style.display = 'block';
   }
 
-  currentDesign = { plotW, plotL, type, style, roof, beds, baths, extras, soil, zoning, seed, requirements,
+  currentDesign = {
+    plotW, plotL, type, style, roof, beds, baths,
+    extras, soil, zoning, seed, requirements,
     svgs: [generate3DSVG(config), generateFacadeSVG(config), generateFloorPlanSVG(config), generateInteriorSVG(config)],
-    specs: '', generatedAt: new Date().toISOString() };
+    specs: '', generatedAt: new Date().toISOString()
+  };
 
   document.getElementById('saveBtn').style.display = 'block';
   setStatus('Generation complete ✓', true);
@@ -852,7 +892,7 @@ function loadProjects() {
   const list     = document.getElementById('projectsList');
   if (!list) return;
   if (projects.length === 0) {
-    list.innerHTML = `<div class="no-projects">${translations[currentLang].noProjects}</div>`;
+    list.innerHTML = `<div class="no-projects">${translations[currentLang].noProjects || 'No saved projects yet.'}</div>`;
     return;
   }
   list.innerHTML = projects.map(p => `
@@ -925,115 +965,114 @@ function restoreMultiToggle(groupId, valuesStr) {
 // CHAT ASSISTANT
 // ========================
 
-let chatOpen       = false;
-let voiceEnabled   = true;
-let isListening    = false;
-let recognition    = null;
-let chatHistory    = [];
+let chatOpen     = false;
+let voiceEnabled = true;
+let isListening  = false;
+let recognition  = null;
+let chatHistory  = [];
 
 function initChat() {
   const t = translations[currentLang];
   const welcomeMsg = document.getElementById('welcomeMsg');
   if (welcomeMsg && t.chatWelcome) welcomeMsg.textContent = t.chatWelcome;
   const chatInput = document.getElementById('chatInput');
-  if (chatInput && t.chatPlaceholder) chatInput.placeholder = t.chatPlaceholder;
-
-  // Enter key to send
   if (chatInput) {
+    if (t.chatPlaceholder) chatInput.placeholder = t.chatPlaceholder;
     chatInput.addEventListener('keypress', e => {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
     });
   }
-
-  // Show badge after 3 seconds
+  const sugs = document.querySelectorAll('.chat-suggestion');
+  const sugKeys = ['chatSug1','chatSug2','chatSug3','chatSug4'];
+  sugs.forEach((s, i) => { if (t[sugKeys[i]]) s.textContent = t[sugKeys[i]]; });
   setTimeout(() => {
     const badge = document.getElementById('chatBadge');
     if (badge && !chatOpen) badge.style.display = 'flex';
   }, 3000);
-
-  // Init speech recognition
   initSpeechRecognition();
 }
 
+// ========================
+// CHAT OPEN / CLOSE
+// ========================
+
 function openChat() {
-  if (!isPro()) { showUpgradeModal('chat'); return; }
   chatOpen = true;
   document.getElementById('chatDrawer').classList.add('open');
   document.getElementById('chatOverlay').classList.add('show');
-  document.getElementById('chatBadge').style.display = 'none';
-  document.getElementById('chatFab').style.display   = 'none';
-  setTimeout(() => { document.getElementById('chatInput').focus(); }, 300);
+  const badge = document.getElementById('chatBadge');
+  const fab   = document.getElementById('chatFab');
+  if (badge) badge.style.display = 'none';
+  if (fab)   fab.style.display   = 'none';
+  setTimeout(() => {
+    const input = document.getElementById('chatInput');
+    if (input) input.focus();
+  }, 300);
 }
 
 function closeChat() {
   chatOpen = false;
   document.getElementById('chatDrawer').classList.remove('open');
   document.getElementById('chatOverlay').classList.remove('show');
-  document.getElementById('chatFab').style.display = 'flex';
-  if (isListening && recognition) { recognition.stop(); }
+  const fab = document.getElementById('chatFab');
+  if (fab) fab.style.display = 'flex';
+  if (isListening && recognition) recognition.stop();
 }
 
 // ========================
-// SEND CHAT MESSAGE
+// SEND MESSAGE
 // ========================
 
 function sendSuggestion(btn) {
-  document.getElementById('chatInput').value = btn.textContent;
-  document.getElementById('chatSuggestions').style.display = 'none';
+  const input = document.getElementById('chatInput');
+  if (input) input.value = btn.textContent;
+  const sugs = document.getElementById('chatSuggestions');
+  if (sugs) sugs.style.display = 'none';
   sendChatMessage();
 }
 
 async function sendChatMessage() {
   const input = document.getElementById('chatInput');
-  const text  = input.value.trim();
+  const text  = input ? input.value.trim() : '';
   if (!text) return;
+  if (input) input.value = '';
 
-  input.value = '';
   addChatMessage(text, 'user');
   chatHistory.push({ role: 'user', text });
 
-  // Hide suggestions after first message
-  document.getElementById('chatSuggestions').style.display = 'none';
+  const sugs = document.getElementById('chatSuggestions');
+  if (sugs) sugs.style.display = 'none';
 
-  // Show typing indicator
   const typingId = addTypingIndicator();
 
-  // Build context from current design
   let designContext = '';
   if (currentDesign) {
-    designContext = `Current user design: ${currentDesign.beds}-bedroom ${currentDesign.style} ${currentDesign.type} on ${currentDesign.plotW}ft x ${currentDesign.plotL}ft plot. Roof: ${currentDesign.roof}. Rooms: ${currentDesign.extras}. Soil: ${currentDesign.soil}. Zoning: ${currentDesign.zoning}.`;
+    designContext = `The user is currently designing: ${currentDesign.beds}-bedroom ${currentDesign.style} ${currentDesign.type} on ${currentDesign.plotW}ft x ${currentDesign.plotL}ft plot. Roof: ${currentDesign.roof}. Rooms: ${currentDesign.extras}. Soil: ${currentDesign.soil}. Zoning: ${currentDesign.zoning}.`;
   }
 
-  // Language instruction
   const langNames = { en:'English', ha:'Hausa', yo:'Yoruba', ig:'Igbo', fr:'French', ar:'Arabic' };
-  const langInstruction = `Always respond in ${langNames[currentLang] || 'English'}.`;
-
-  const systemPrompt = `You are ArchGen AI, a friendly and expert architectural assistant specializing in Nigerian and African residential building design. You know about Nigerian building codes, local materials, soil types, climate conditions, and construction practices. ${designContext} ${langInstruction} Keep responses concise, helpful and practical. Max 150 words per response.`;
+  const systemPrompt = `You are ArchGen AI, a friendly expert architectural assistant specializing in Nigerian and African residential building design. You know Nigerian building codes, local materials, soil types, climate conditions, and construction practices. ${designContext} Always respond in ${langNames[currentLang]||'English'}. Keep responses concise, helpful and practical. Maximum 150 words.`;
 
   try {
-    const response = await callAI(systemPrompt + '\n\nUser question: ' + text);
+    const response = await callAI(systemPrompt + '\n\nUser: ' + text);
     removeTypingIndicator(typingId);
     addChatMessage(response, 'assistant');
     chatHistory.push({ role: 'assistant', text: response });
-
-    // Speak the response if voice is enabled
     if (voiceEnabled) speakText(response);
-
   } catch(err) {
     removeTypingIndicator(typingId);
-    const errMsg = 'Sorry, I could not connect right now. Please check your API key and try again.';
+    const errMsg = 'Sorry, I could not connect right now. Please check your API key.';
     addChatMessage(errMsg, 'assistant');
-    if (voiceEnabled) speakText(errMsg);
   }
 }
 
 function addChatMessage(text, role) {
   const messages = document.getElementById('chatMessages');
-  const session  = JSON.parse(localStorage.getItem('archgen_session') || '{}');
-  const avatar   = role === 'user' ? (session.avatar || 'U') : '🏗️';
-  const time     = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-
-  const msgEl = document.createElement('div');
+  if (!messages) return;
+  const session = JSON.parse(localStorage.getItem('archgen_session') || '{}');
+  const avatar  = role === 'user' ? (session.avatar || 'U') : '🏗️';
+  const time    = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  const msgEl   = document.createElement('div');
   msgEl.className = 'chat-msg ' + role;
   msgEl.innerHTML = `
     <div class="chat-msg-avatar">${avatar}</div>
@@ -1042,7 +1081,6 @@ function addChatMessage(text, role) {
       <div class="chat-msg-time">${time}</div>
     </div>
   `;
-
   messages.appendChild(msgEl);
   messages.scrollTop = messages.scrollHeight;
   return msgEl;
@@ -1050,15 +1088,14 @@ function addChatMessage(text, role) {
 
 function addTypingIndicator() {
   const messages = document.getElementById('chatMessages');
-  const id       = 'typing_' + Date.now();
-  const el       = document.createElement('div');
-  el.className   = 'chat-msg assistant';
-  el.id          = id;
-  el.innerHTML   = `
+  if (!messages) return null;
+  const id = 'typing_' + Date.now();
+  const el = document.createElement('div');
+  el.className = 'chat-msg assistant';
+  el.id = id;
+  el.innerHTML = `
     <div class="chat-msg-avatar">🏗️</div>
-    <div class="chat-typing">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="chat-typing"><span></span><span></span><span></span></div>
   `;
   messages.appendChild(el);
   messages.scrollTop = messages.scrollHeight;
@@ -1066,6 +1103,7 @@ function addTypingIndicator() {
 }
 
 function removeTypingIndicator(id) {
+  if (!id) return;
   const el = document.getElementById(id);
   if (el) el.remove();
 }
@@ -1077,46 +1115,29 @@ function removeTypingIndicator(id) {
 function toggleVoice() {
   voiceEnabled = !voiceEnabled;
   const btn = document.getElementById('voiceToggle');
+  if (!btn) return;
   if (voiceEnabled) {
     btn.textContent = '🔊';
     btn.classList.add('active');
-    btn.title = 'Voice ON — click to mute';
   } else {
     btn.textContent = '🔇';
     btn.classList.remove('active');
-    btn.title = 'Voice OFF — click to enable';
     if (window.speechSynthesis) window.speechSynthesis.cancel();
   }
 }
 
 function speakText(text) {
-  if (!voiceEnabled) return;
-  if (!window.speechSynthesis) return;
-
+  if (!voiceEnabled || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(text);
+  const utterance  = new SpeechSynthesisUtterance(text);
   utterance.rate   = 0.9;
   utterance.pitch  = 1.0;
   utterance.volume = 1.0;
-
-  // Set language for speech
-  const langCodes = {
-    en: 'en-NG', // Nigerian English
-    ha: 'ha',
-    yo: 'yo',
-    ig: 'ig',
-    fr: 'fr-FR',
-    ar: 'ar-SA'
-  };
-
-  utterance.lang = langCodes[currentLang] || 'en-NG';
-
-  // Pick best available voice
-  const voices    = window.speechSynthesis.getVoices();
-  const langVoice = voices.find(v => v.lang.startsWith(utterance.lang.split('-')[0]));
+  const langCodes  = { en:'en-NG', ha:'ha', yo:'yo', ig:'ig', fr:'fr-FR', ar:'ar-SA' };
+  utterance.lang   = langCodes[currentLang] || 'en-NG';
+  const voices     = window.speechSynthesis.getVoices();
+  const langVoice  = voices.find(v => v.lang.startsWith(utterance.lang.split('-')[0]));
   if (langVoice) utterance.voice = langVoice;
-
   window.speechSynthesis.speak(utterance);
 }
 
@@ -1127,65 +1148,57 @@ function speakText(text) {
 function initSpeechRecognition() {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) return;
-
   recognition = new SpeechRecognition();
-  recognition.continuous    = false;
+  recognition.continuous     = false;
   recognition.interimResults = true;
-
   const langCodes = { en:'en-NG', ha:'ha', yo:'yo', ig:'ig', fr:'fr-FR', ar:'ar-SA' };
   recognition.lang = langCodes[currentLang] || 'en-NG';
 
   recognition.onstart = () => {
     isListening = true;
-    document.getElementById('micBtn').classList.add('listening');
-    document.getElementById('micBtn').textContent = '🔴';
-    document.getElementById('chatInput').placeholder = 'Listening...';
+    const mic   = document.getElementById('micBtn');
+    const input = document.getElementById('chatInput');
+    if (mic)   { mic.classList.add('listening'); mic.textContent = '🔴'; }
+    if (input) input.placeholder = 'Listening...';
   };
 
   recognition.onresult = (event) => {
     const transcript = [...event.results].map(r => r[0].transcript).join('');
-    document.getElementById('chatInput').value = transcript;
-    if (event.results[event.results.length - 1].isFinal) {
+    const input      = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    if (event.results[event.results.length-1].isFinal) {
       isListening = false;
-      document.getElementById('micBtn').classList.remove('listening');
-      document.getElementById('micBtn').textContent = '🎤';
-      document.getElementById('chatInput').placeholder = translations[currentLang].chatPlaceholder || 'Ask about your building design...';
+      const mic = document.getElementById('micBtn');
+      if (mic) { mic.classList.remove('listening'); mic.textContent = '🎤'; }
+      const t   = translations[currentLang];
+      if (input) input.placeholder = t.chatPlaceholder || 'Ask about your building design...';
       sendChatMessage();
     }
   };
 
-  recognition.onerror = () => {
+  recognition.onerror = recognition.onend = () => {
     isListening = false;
-    document.getElementById('micBtn').classList.remove('listening');
-    document.getElementById('micBtn').textContent = '🎤';
-    document.getElementById('chatInput').placeholder = translations[currentLang].chatPlaceholder || 'Ask about your building design...';
-  };
-
-  recognition.onend = () => {
-    isListening = false;
-    document.getElementById('micBtn').classList.remove('listening');
-    document.getElementById('micBtn').textContent = '🎤';
+    const mic   = document.getElementById('micBtn');
+    const input = document.getElementById('chatInput');
+    if (mic)   { mic.classList.remove('listening'); mic.textContent = '🎤'; }
+    if (input) input.placeholder = (translations[currentLang] || {}).chatPlaceholder || 'Ask about your building design...';
   };
 }
 
 function startVoiceInput() {
-  if (!isPro()) { showUpgradeModal('chat'); return; }
-
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
     alert('Voice input is not supported in your browser. Please use Chrome or Edge.');
     return;
   }
-
-  if (isListening) {
-    recognition.stop();
-    return;
-  }
-
-  // Update language before starting
-  const langCodes = { en:'en-NG', ha:'ha', yo:'yo', ig:'ig', fr:'fr-FR', ar:'ar-SA' };
-  recognition.lang = langCodes[currentLang] || 'en-NG';
-  recognition.start();
+  if (isListening) { if (recognition) recognition.stop(); return; }
+  const langCodes  = { en:'en-NG', ha:'ha', yo:'yo', ig:'ig', fr:'fr-FR', ar:'ar-SA' };
+  if (recognition) recognition.lang = langCodes[currentLang] || 'en-NG';
+  try { if (recognition) recognition.start(); } catch(e) { console.log('Recognition error:', e); }
 }
 
-console.log('MY ArchGen — Chat Assistant + Voice Ready! 🏗️💬🎤');
+// ========================
+// LOG
+// ========================
+
+console.log('MY ArchGen — All Systems Ready! 🏗️💬🎤⭐');
