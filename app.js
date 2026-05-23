@@ -601,8 +601,7 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 
 async function callAI(prompt) {
 
-  // Your Cloudflare Worker URL
-  const PROXY_URL = 'https://archgen-proxy.maiyakini0006.workers.dev/';
+  const PROXY_URL = 'https://archgen-proxy.maiyakini0006.workers.dev';
 
   const response = await fetch(PROXY_URL, {
     method: 'POST',
@@ -627,7 +626,6 @@ async function callAI(prompt) {
   if (!data.candidates?.[0]?.content?.parts?.[0]) throw new Error('No response from AI');
   return data.candidates[0].content.parts[0].text;
 }
-
 // ========================
 // SVG WATERMARK
 // ========================
