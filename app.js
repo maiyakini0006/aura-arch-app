@@ -600,48 +600,31 @@ function buildSummary(beds, baths, type, plotW, plotL, seed) {
 // ========================
 
 async function callAI(prompt) {
-  const GEMINI_KEY = 'AIzaSyDrtCvU5c_u4hvvF6zNntFtpizXYeowRcQ';
 
-  const response = await fetch(
-    'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' + GEMINI_KEY,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{ text: prompt }]
-        }],
-        generationConfig: {
-          maxOutputTokens: 800,
-          temperature: 0.7,
-          topP: 0.8,
-          topK: 10
-        },
-        safetySettings: [
-          { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
-          { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
-          { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
-          { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' }
-        ]
-      })
-    }
-  );
+  // Your Cloudflare Worker URL
+  const PROXY_URL = 'https://archgen-proxy.maiyakini0006.workers.dev/';
+
+  const response = await fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{
+        parts: [{ text: prompt }]
+      }],
+      generationConfig: {
+        maxOutputTokens: 800,
+        temperature: 0.7
+      }
+    })
+  });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error?.message || 'API Error: ' + response.status);
+    throw new Error('Proxy error: ' + response.status);
   }
 
   const data = await response.json();
-
   if (data.error) throw new Error(data.error.message);
-  if (!data.candidates?.[0]?.content?.parts?.[0]) {
-    throw new Error('No response from AI — check your API key');
-  }
-
+  if (!data.candidates?.[0]?.content?.parts?.[0]) throw new Error('No response from AI');
   return data.candidates[0].content.parts[0].text;
 }
 
